@@ -125,10 +125,13 @@
         to retrieve <a href="#ime-composition">composition text</a>
         while it is being composed in an associated IME.</p>
       <p>However, Web applications can still run into difficulties when
-        they manipulate IMEs on non-editable elements such as the
-        <code>&lt;canvas&gt;</code> element; those difficulties include
+        they want text input on non-editable elements such as the
+        <code>&lt;div&gt;</code> element without <code>contenteditable</code>
+        attribute being set to <code>true</code>, or interact with IMEs;
+        those difficulties include
         the fact that a Web application cannot do the following:</p>
       <ul>
+        <li>get input outside any editable element</li>
         <li>indicate to the user whether the Web application renders
           composition text by itself, or needs to ask user agents to
           render it</li>
