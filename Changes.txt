@@ -1,0 +1,3 @@
+- Renamed getInputContext() to .inputMethodContext
+- Removed Javascript IME use-case
+- Removed example1 (drawing composition text in <canvas>
