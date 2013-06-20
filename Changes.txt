@@ -1,3 +1,7 @@
+Changes since 20130404 Working Draft
+
+- Clarified that context is usually associated with one editable or focusable
+  element.
 - Renamed getInputContext() to .inputMethodContext
 - Removed Javascript IME use-case
 - Removed example1 (drawing composition text in <canvas>

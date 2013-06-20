@@ -540,21 +540,25 @@ function onCompositionUpdate(event) {
 
     <section>
       <h1>The inputMethodContext property</h1>
-      <p>For each element, a user agent can choose an IME for the element.
-      To control the IME attached to an element, it is a good idea to add a
-      method to the HTMLElement interface.</p>
-      <p class="issue">If the
-      <code>.inputMethodContext</code>
-      property cannot be added to the HTMLElement
-      interface, it should be moved to the <a>InputMethodContext</a> interface.</p>
-
+      <p>For each editable or focusable element, a user agent MAY have
+        different contexts for IMEs.
+      To control the IME attached to an element, it is a good idea to add this
+        property to the HTMLElement interface.</p>
       <dl title="partial interface HTMLElement" class="idl">
         <dt>attribute InputMethodContext inputMethodContext</dt>
-          <dd>Returns an InputMethodContext interface associated with this element. By
-          default, a user agent returns an InputMethodContext interface representing
-          the system IME. To change the behavior of the IME associated with an
-          element, authors MUST first obtain an InputMethodContext interface by
-          calling the inputMethodContext property of the HTMLElement interface.
+          <dd>
+            <p>Returns an InputMethodContext interface associated with
+              this element.</p>
+            <p>To change the behavior of the IME associated with an
+              element, authors MUST first obtain an InputMethodContext
+              interface from the inputMethodContext property of
+              the HTMLElement interface.</p>
+            <p>The returned InputMethodContext interface MAY not be directly
+              associated to the element, when the interface is shared
+              among elements under an innermost editable or focusable element.
+              In that case, <code>target</code> property in the
+              InputMethodContext interface points to the element which owns
+              the interface.</p>
           </dd>
       </dl>
     </section>
@@ -606,6 +610,9 @@ function onCompositionUpdate(event) {
             a BCP-47 tag (e.g. "en-US").
             The locale MAY be the empty string when
             inapplicable or unknown.</dd>
+        <dt>readonly attribute HTMLElement target</dt>
+          <dd>Represents the element associated with the InputMethodContext
+          object.</dd>
         <dt>void confirmComposition()</dt>
           <dd>
           <p>Finishes the ongoing composition of the hosting user agent.</p>
