@@ -574,7 +574,13 @@ function onCompositionUpdate(event) {
           <dd>If composition text is segmented into clauses by an IME,
              this array contains 0-based indices of the starting character of
              each clause in increasing order.  If composition text is not
-             segmented, it contains one '0' element.</dd>
+             segmented, it contains one '0' element.
+            <p class="note">This can be used to render compostion text as
+              segmented clauses, but how to visualize them are not specified
+              here.  It is recommended to follow the platform standard way to
+              visualize the segmentation (e.g. using underline or reverse
+              background etc.).</p>
+          </dd>
         <dt>readonly attribute DOMString locale</dt>
           <dd>Represents the locale of the current input method as
             a BCP-47 tag (e.g. "en-US").
