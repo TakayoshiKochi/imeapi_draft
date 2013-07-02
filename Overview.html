@@ -614,8 +614,12 @@ function onCompositionUpdate(event) {
             a user agent renders a
             <a href="#candidate-window">candidate window</a>
             or a composition window, it uses
-            this rectangle to prevent these windows from being rendered on this
-            rectangle.</p>
+            this rectangle to draw windows next to the composition or
+            prevent these windows from being rendered on this rectangle.</p>
+            <p>If a Web application wants to render composition text itself,
+            it has to tell a user agent where the composition text will be
+            located whenever it gets <code>compositionstart</code> event
+            or <code>compositionend</code> event.</p>
             <p>On Windows, this rectangle is used as a parameter for
             ImmSetCandidateWindow(). On Mac, this rectangle is sent when it calls
             [firstRectForCharacterRange:]. On Linux (GTK), this rectangle is used as a
@@ -633,6 +637,9 @@ function onCompositionUpdate(event) {
               <li>The <var>w</var>, and <var>h</var> are width and height of
                 the rectangle.</li>
             </ul>
+            <p>These set values apply only to the current
+              composition session (i.e. until <code>compositionend</code>
+              event is sent).</p>
             <p>A user agent MAY need to convert these
               coordinates to the screen coordinates when it shows a
               <a href="#candidate-window">candidate window</a>.
@@ -647,6 +654,9 @@ function onCompositionUpdate(event) {
             <p>A user agent MAY use this hint to explicitly control the
               position for a candidate window, or determine zoom level
               and view port when on-screen keyboard comes in.</p>
+            <p>These set values apply only to the current
+              composition session (i.e. until <code>compositionend</code>
+              event is sent).</p>
             <ul>
               <li>The <var>anchor</var> parameter represents the DOM node
                 against which the rectangle is positioned.

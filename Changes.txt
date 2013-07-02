@@ -1,5 +1,6 @@
 Changes since 20130404 Working Draft
 
+- Clarified the scope of setCaretRectangle()'s coordinates.
 - Removed (confusing) 'enabled' property and open() method in favor of
   usual focus control and inputmode attribute.
 - Merged composition dictionary into InputMethodContext, 'text' property
