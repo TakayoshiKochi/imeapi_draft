@@ -1,7 +1,16 @@
 Changes since 20130404 Working Draft
 
+- Merged composition dictionary into InputMethodContext, 'text' property
+  was changed to plain DOMString from Node, 'caret' property was divided
+  into 'selectionStart' and 'selectionEnd' properties.
 - Clarified that context is usually associated with one editable or focusable
   element.
-- Renamed getInputContext() to .inputMethodContext
+- Renamed getInputContext() to .inputMethodContext per comment from James Su
+  [2]
 - Removed Javascript IME use-case
 - Removed example1 (drawing composition text in <canvas>
+
+[1] Microsoft proposal:
+  https://dvcs.w3.org/hg/ime-api/raw-file/tip/proposals/IMEProposal.html
+[2] Comment from James Su
+  http://lists.w3.org/Archives/Public/public-webapps/2013AprJun/0361.html

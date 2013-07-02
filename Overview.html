@@ -90,18 +90,12 @@
       <p>This specification defines an &ldquo;IME API&rdquo; that provides
         Web applications with scripted access to an IME
         (<a href="#IME">input-method editor</a>) associated with
-        a hosting user agent. This IME API includes:</p>
-      <ul>
-        <li>An <a>InputMethodContext</a> interface, which provides methods to
+        a hosting user agent. This IME API includes
+        an <a>InputMethodContext</a> interface, which provides methods to
          retrieve detailed data from an in-progress IME
-         <a href="#ime-composition">composition</a>.</li>
-       <li>A <a>Composition</a> dictionary, which represents read-only
-         attributes about the current
-         <a href="#ime-composition">composition</a>,
-         such as the actual text and its style.</li>
-      </ul>
+         <a href="#ime-composition">composition</a>.</p>
       <p>This API is designed to be used in conjunction with DOM events
-        [[DOM-LEVEL-3-EVENTS]].</a>
+        [[DOM-LEVEL-3-EVENTS]].</a></p>
     </section>
     <section id="sotd">
       <p>
@@ -562,31 +556,22 @@ function onCompositionUpdate(event) {
           </dd>
       </dl>
     </section>
-    <section id="composition-dictionary">
-      <h1>The Composition Dictionary</h1>
-      <p>This dictionary represents an ongoing IME composition. It provides
-      an attribute representing the text being composed by an IME. It also
-      provides a method to retrieve attributes of the specified character in the
-      composition text.</p>
-      <dl title="dictionary Composition" class="idl">
-        <dt>Node text</dt>
-          <dd>Represents the styled text being composed by an IME. This node
-            MAY have child nodes, e.g. when an <a href="#ime-composition">IME
-              composition</a> consists of multiple <a href="#ime-clause">IME clauses</a>,
-          this node has child nodes and each child node represents an
-          <a href="#ime-clause">IME clause</a>. The text attribute of this node
-          is equal to the text
-          attribute of a compositionupdate event.
-          <dd>Represents the text being composed by an IME. This string is
-            equal to the text attribute of a compositionupdate event.</dd>
-        <dt>Range caret</dt>
-          <dd>Represents the caret in this composition text. The
-          CommonAncestorContainer attribute of this range MUST be <code>text</code>.</dd>
-      </dl>
-    </section>
     <section id="inputmethodcontext-interface">
       <h1>The InputMethodContext Interface</h1>
       <dl title="interface InputMethodContext" class="idl">
+        <dt>readonly attribute DOMString text</dt>
+          <dd>Represents the text being composed by an IME.
+            The text attribute of this node is equal to the text
+            attribute of a compositionupdate event when this is referenced
+            in compositionupdate's event handler.</dd>
+        <dt>readonly long selectionStart</dt>
+          <dd>Represents the 0-based index to the first character of
+            the selection in the current composition text.</dd>
+        <dt>readonly long selectionEnd</dt>
+          <dd>Represents the 0-based index to the last character of
+            the selection in the current composition text.
+            If there is no selection, selectionStart and selectionEnd MUST
+            be the same value and they indicate the position of the caret.</dd>
         <dt>readonly attribute Composition composition</dt>
           <dd><p>Represents the detailed information of the ongoing IME
           composition. When an IME is not composing text, this value MUST be
