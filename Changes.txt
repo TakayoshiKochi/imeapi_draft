@@ -2,7 +2,8 @@ Changes since 20130404 Working Draft
 
 - Merged composition dictionary into InputMethodContext, 'text' property
   was changed to plain DOMString from Node, 'caret' property was divided
-  into 'selectionStart' and 'selectionEnd' properties.
+  into 'selectionStart' and 'selectionEnd' properties.  Added 'segments'
+  property to determine the position of segment of composition text.
 - Clarified that context is usually associated with one editable or focusable
   element.
 - Renamed getInputContext() to .inputMethodContext per comment from James Su
