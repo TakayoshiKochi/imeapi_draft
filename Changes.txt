@@ -1,5 +1,7 @@
 Changes since 20130404 Working Draft
 
+- Removed (confusing) 'enabled' property and open() method in favor of
+  usual focus control and inputmode attribute.
 - Merged composition dictionary into InputMethodContext, 'text' property
   was changed to plain DOMString from Node, 'caret' property was divided
   into 'selectionStart' and 'selectionEnd' properties.  Added 'segments'
