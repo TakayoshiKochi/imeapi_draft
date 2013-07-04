@@ -11,6 +11,7 @@ Changes since 20130404 Working Draft
   element.
 - Renamed getInputContext() to .inputMethodContext per comment from James Su
   [2]
+- Added target attribute proposed by Microsoft [1]
 - Removed Javascript IME use-case
 - Removed example1 (drawing composition text in <canvas>
 
