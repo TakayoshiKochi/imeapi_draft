@@ -1,5 +1,6 @@
 Changes since 20130404 Working Draft
 
+- Marked most attributes as nullable.
 - Clarified the scope of setCaretRectangle()'s coordinates.
 - Removed (confusing) 'enabled' property and open() method in favor of
   usual focus control and inputmode attribute.
