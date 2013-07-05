@@ -536,16 +536,17 @@ function onCompositionUpdate(event) {
         <a href="#inputmethodcontext-interface">InputMethodContext</a>
         interface on an editable or
         <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/editing.html#focusable">focusable</a>
-        element, which can get keyboard input first (i.e. &ldquo;target&rdquo;)
+        element, which can get keyboard input first
+        (i.e. a &ldquo;target&rdquo; element).
 .
         If this property is accessed
         on non-editable, non-focusable element, a user agent SHOULD
         return a context for the innermost editable or focusable element
         to the element.  In this case, the <code>target</code> property
         in the <a href="#inputmethodcontext-interface">InputMethodContext</a>
-        interface indicates the target element.
-        If no ancestor of a element is editable or focusable, this property
-        returns <code>null</code>.</p>
+        interface points to the target element.
+        If all ancestors of an element are neither editable nor focusable,
+        this property returns <code>null</code>.</p>
       <p>To control the IME attached to an element, it is a good idea to add
         this property to the HTMLElement interface.</p>
       <dl title="partial interface HTMLElement" class="idl">
