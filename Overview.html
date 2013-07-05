@@ -544,12 +544,12 @@ function onCompositionUpdate(event) {
         to the element.  In this case, the <code>target</code> property
         in the <a href="#inputmethodcontext-interface">InputMethodContext</a>
         interface indicates the target element.
-        If any element above the DOM tree of a element is editable or
-        focusable, this property returns <code>null</code>.</p>
+        If no ancestor of a element is editable or focusable, this property
+        returns <code>null</code>.</p>
       <p>To control the IME attached to an element, it is a good idea to add
         this property to the HTMLElement interface.</p>
       <dl title="partial interface HTMLElement" class="idl">
-        <dt>attribute InputMethodContext inputMethodContext</dt>
+        <dt>attribute InputMethodContext? inputMethodContext</dt>
           <dd>
             <p>Returns an InputMethodContext interface associated with
               this element.</p>
@@ -569,20 +569,20 @@ function onCompositionUpdate(event) {
     <section id="inputmethodcontext-interface">
       <h1>The InputMethodContext Interface</h1>
       <dl title="interface InputMethodContext" class="idl">
-        <dt>readonly attribute DOMString text</dt>
+        <dt>readonly attribute DOMString? text</dt>
           <dd>Represents the text being composed by an IME.
             The text attribute of this node is equal to the text
             attribute of a compositionupdate event when this is referenced
             in compositionupdate's event handler.</dd>
-        <dt>readonly attribute long selectionStart</dt>
+        <dt>readonly attribute long? selectionStart</dt>
           <dd>Represents the 0-based index to the first character of
             the selection in the current composition text.</dd>
-        <dt>readonly attribute long selectionEnd</dt>
+        <dt>readonly attribute long? selectionEnd</dt>
           <dd>Represents the 0-based index to the last character of
             the selection in the current composition text.
             If there is no selection, selectionStart and selectionEnd MUST
             be the same value and they indicate the position of the caret.</dd>
-        <dt>readonly attribute sequence&lt;long&gt; segments</dt>
+        <dt>readonly attribute sequence&lt;long&gt;? segments</dt>
           <dd>If composition text is segmented into clauses by an IME,
              this array contains 0-based indices of the starting character of
              each clause in increasing order.  If composition text is not
@@ -598,20 +598,21 @@ function onCompositionUpdate(event) {
               the composition is desired.
             </p>
           </dd>
-        <dt>readonly attribute DOMString locale</dt>
+        <dt>readonly attribute DOMString? locale</dt>
           <dd>Represents the locale of the current input method as
             a BCP-47 tag (e.g. "en-US").
             The locale MAY be the empty string when
             inapplicable or unknown.</dd>
-        <dt>readonly attribute HTMLElement target</dt>
+        <dt>readonly attribute HTMLElement? target</dt>
           <dd>
             <p>Represents the element associated with the InputMethodContext
               object.</p>
-            <p>Once a target element gets deleted, any access to the
+            <p>Once a target element gets deleted or modified not to accept
+              any input, any access to the
               <a href="#inputmethodcontext-interface">InputMethodContext</a>
-              interface through the object obtained prior to the deletion
-              has no effect, and access to any attribute will return
-              <code>null</code> or 0.
+              interface through the object has no effect.  Any method calls
+              will just return and accesses to any attribute will return
+              <code>null</code>.
             </p>
           </dd>
         <dt>void confirmComposition()</dt>
