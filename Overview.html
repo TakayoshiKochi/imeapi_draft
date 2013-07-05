@@ -152,7 +152,7 @@
         are for solving different issues.
       </p>
 
-      <p>Consider the following example.</p>
+      <p>Consider the following examples.</p>
       <p>This example shows the source which gives a hint for an IME
       where the application wants it to avoid placing UI elements. A simple
       web search page which gives a user suggestions while the user is
@@ -228,6 +228,72 @@ function onCompositionUpdate(event) {
   &lt;input type=&quot;text&quot; id=&quot;input0&quot; placeholder=&quot;search here&quot;&gt;
   &lt;ul id=&quot;suggest0&quot;&gt;&lt;/ul&gt;
 &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+      <p>This example shows the source which draws composition text in
+        its own style.</p>
+
+<pre class="example sh_javascript" id="ex-drawing-composition">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+.clause {
+  margin-right: 2px;
+  border-style: solid;
+  border-width: 0px 0px 1px 0px;;
+  border-color: #333333;
+}
+.selected {
+  border-width: 0px 0px 2px 0px;;
+  border-color: #000000;
+}
+&lt;/style&gt;
+&lt;script language="javascript" type="text/javascript"&gt;
+// compositionupdate event handler
+function onCompositionUpdate(event) {
+    var target = event.target;
+
+    // Remove all children.
+    while (target.childNodes.length &lt; 0) {
+        edit.removeChild(edit.childNodes[0]);
+    }
+
+    // Get the IME context.
+    var ctx = target.inputMethodContext;
+
+    // Create clause spans.
+    var text = ctx.text;
+    var segments = ctx.segments;
+    for (i = 0; i &lt; segments.length; i++) {
+        var span = document.createElement('span');
+        span.classList.add('clause');
+        if (segments[i] == ctx.selectionStart) {
+            span.classList.add('selected');
+        }
+        var end = text.length;
+        if (i &lt; segments.length - 1) {
+             end = segments[i + 1];
+        }
+        span.textContent = text.substring(ctx.segments[i], end);
+        target.appendChild(span);
+    }
+
+    // Prevent the browser from drawing composition text.
+    event.preventDefault();
+}
+
+function init() {
+    var composition = document.getElementById('composition');
+    composition.focus();
+    composition.addEventHandler('compositionupdate', onCompositionUpdate, false);
+}
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload="init();"&gt;
+&lt;div id="composition"&gt;&lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
