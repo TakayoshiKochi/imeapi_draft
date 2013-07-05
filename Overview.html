@@ -179,11 +179,6 @@
     border-width: 1px;
     border-color: #000;
 }
-
-.suggest {
-    margin: 0;
-    padding: 0;
-}
 &lt;/style&gt;
 &lt;script language="javascript" type="text/javascript"&gt;
 function init() {
@@ -203,20 +198,23 @@ function expandSuggest(candidates) {
     // Callback after getting search suggestions.
     var suggest = document.getElementById('suggest0');
     var i;
+    // Clear old suggestions.
     for (i = 0; i &lt; suggest.childNodes.length; i++) {
         suggest.removeChild(suggest.childNodes[0]);
     }
+    // Render new suggeston list.
     for (i = 0; i &lt; candidates.length; i++) {
-        suggest.appendChild(document.createElement("li"));
+        suggest.appendChild(document.createElement('li'));
         suggest.childNodes[i].textContent = candidates[i];
     }
     // Set exclusion area hint for the IME.
     var input = document.getElementById('input0');
     var context = input.inputMethodContext;
-    var relative_x = input.offsetLeft - suggest.offsetLeft;
-    var relative_y = input.offsetTop - suggest.offsetTop;
+    var relative_x = suggest.offsetLeft - input.offsetLeft;
+    var relative_y = suggest.offsetTop - input.offsetTop;
     context.setExclusionRectangle(input, relative_x, relative_y,
-                                         input.offsetWidth, input.offsetHeight);
+                                         suggest.offsetWidth,
+                                         suggest.offsetHeight);
 }
 
 function onCompositionUpdate(event) {
