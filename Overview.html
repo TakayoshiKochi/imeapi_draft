@@ -576,11 +576,17 @@ function onCompositionUpdate(event) {
             attribute of a compositionupdate event when this is referenced
             in compositionupdate's event handler.</dd>
         <dt>readonly attribute long? selectionStart</dt>
-          <dd>Represents the 0-based index to the first character of
-            the selection in the current composition text.</dd>
+          <dd><p>Represents the 0-based index to the first character of
+            the selection in the current composition text.</p>
+          <p class="note">An author can assume that
+            <code>selectionStart</code> and <code>selectionEnd</code>
+            boundary fit in with any of <code>segments</code>, and
+            that <code>selectionStart</code> is equal or less than
+            <code>selectionEnd</code>.</p></dd>
         <dt>readonly attribute long? selectionEnd</dt>
-          <dd>Represents the 0-based index to the last character of
-            the selection in the current composition text.
+          <dd>Represents the 0-based index to the next position of
+            the last character of the selection in the current composition
+            text.
             If there is no selection, selectionStart and selectionEnd MUST
             be the same value and they indicate the position of the caret.</dd>
         <dt>readonly attribute sequence&lt;long&gt;? segments</dt>
