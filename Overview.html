@@ -243,11 +243,11 @@ function onCompositionUpdate(event) {
 .clause {
   margin-right: 2px;
   border-style: solid;
-  border-width: 0px 0px 1px 0px;;
+  border-width: 0px 0px 1px 0px;
   border-color: #333333;
 }
 .selected {
-  border-width: 0px 0px 2px 0px;;
+  border-width: 0px 0px 2px 0px;
   border-color: #000000;
 }
 &lt;/style&gt;
@@ -270,7 +270,9 @@ function onCompositionUpdate(event) {
     for (i = 0; i &lt; segments.length; i++) {
         var span = document.createElement('span');
         span.classList.add('clause');
+        var selected = false;
         if (segments[i] == ctx.selectionStart) {
+            selected = true;
             span.classList.add('selected');
         }
         var end = text.length;
@@ -279,6 +281,10 @@ function onCompositionUpdate(event) {
         }
         span.textContent = text.substring(ctx.segments[i], end);
         target.appendChild(span);
+        if (selected) {
+            ctx.setCaretRectangle(document.body, rect.left, rect.top,
+                                                 rect.width, rect.height);
+        }
     }
 
     // Prevent the browser from drawing composition text.
