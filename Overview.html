@@ -582,7 +582,7 @@ function onCompositionUpdate(event) {
             the selection in the current composition text.
             If there is no selection, selectionStart and selectionEnd MUST
             be the same value and they indicate the position of the caret.</dd>
-        <dt>readonly attribute Uint32Array segments</dt>
+        <dt>readonly attribute sequence&lt;long&gt; segments</dt>
           <dd>If composition text is segmented into clauses by an IME,
              this array contains 0-based indices of the starting character of
              each clause in increasing order.  If composition text is not
