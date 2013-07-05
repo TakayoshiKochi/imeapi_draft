@@ -713,10 +713,11 @@ function onCompositionUpdate(event) {
       <h1>Life of InputMethodContext</h1>
       <p>Once a <code>InputMethodContext</code> interface is obtained,
         it should be valid for the lifetime of its <code>target</code>
-        element's lifetime.  Once the target gets disabled,
-        authors MAY NOT access through the interface even after the
+        element's lifetime, as long as the element is editable or focusable.
+        Once the target gets disabled,
+        authors MAY NOT access an IME through the interface even after the
         target gets enabled again.  Once the target is deleted,
-        the interface cannot access to any IME context.</p>
+        any access to the interface is void.</p>
       <p>Any access to the InputMethodContext interface makes sense
         mostly when the target element has focus.  In other words,
         it makes little sense if you access the interface when the target
