@@ -16,7 +16,7 @@ Changes since 20130404 Working Draft
 - Clarified the scope of setCaretRectangle()'s coordinates.
 - Removed (confusing) 'enabled' property and open() method in favor of
   usual focus control and inputmode attribute.
-- Changed composition dictionary. the 'text' property was changed to plain
+- Changed composition interface. the 'text' property was changed to plain
   DOMString from Node, the 'caret' property was divided into the
   'selectionStart' and the 'selectionEnd' properties.  Added the 'segments'
   property to represent the position of segmentation of composition text.

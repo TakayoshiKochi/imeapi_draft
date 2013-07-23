@@ -95,7 +95,7 @@
           <li>An <a>InputMethodContext</a> interface, which provides methods to
             retrieve detailed data from an in-progress IME
             <a href="#ime-composition">composition</a>.</li>
-          <li>A <a>Composition</a> dictionary, which represents read-only
+          <li>A <a>Composition</a> interface, which represents read-only
             attributes about the current
             <a href="#ime-composition">composition</a>, such as actual text
             and its associated information.</li>
@@ -638,14 +638,14 @@ function init() {
       </dl>
     </section>
 
-    <section id="composition-dictionary">
-      <h1>The Composition Dictionary</h1>
-      <p>This dictionary represents an ongoing IME composition. It provides
+    <section id="composition-interface">
+      <h1>The Composition Interface</h1>
+      <p>This interface represents an ongoing IME composition. It provides
         attributes representing the text being composed by an IME and
         its associated information.</p>
-      <p class="note">It might be a good idea to add this dictionary to
+      <p class="note">It might be a good idea to add this interface to
         <a href="http://www.w3.org/TR/DOM-Level-3-Events/#events-CompositionEvent">CompositionEvent.</a></p>
-      <dl title="dictionary Composition" class="idl">
+      <dl title="interface Composition" class="idl">
         <dt>readonly attribute DOMString text</dt>
           <dd>Represents the text being composed by an IME.
             The text attribute of this node is equal to the text
