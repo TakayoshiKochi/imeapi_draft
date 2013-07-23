@@ -603,7 +603,7 @@ function init() {
     <section>
       <h1>The inputMethodContext property</h1>
       <p>Authors can get an object which implements the
-        <a href="#inputmethodcontext-interface">InputMethodContext</a>
+        <a>InputMethodContext</a>
         interface on an editable or
         <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/editing.html#focusable">focusable</a>
         element, which can get keyboard input first
@@ -613,7 +613,7 @@ function init() {
         on non-editable, non-focusable element, a user agent SHOULD
         return a context for the innermost editable or focusable element
         to the element.  In this case, the <code>target</code> property
-        in the <a href="#inputmethodcontext-interface">InputMethodContext</a>
+        in the <a>InputMethodContext</a>
         interface points to the target element.
         If all ancestors of an element are neither editable nor focusable,
         this property returns <code>null</code>.</p>
@@ -622,17 +622,17 @@ function init() {
       <dl title="partial interface HTMLElement" class="idl">
         <dt>readonly attribute InputMethodContext? inputMethodContext</dt>
           <dd>
-            <p>Returns an InputMethodContext interface associated with
+            <p>Returns an <a>InputMethodContext</a> interface associated with
               this element.</p>
             <p>To change the behavior of the IME associated with an
-              element, authors MUST first obtain an InputMethodContext
-              interface from the inputMethodContext property of
+              element, authors MUST first obtain an <a>InputMethodContext</a>
+              interface from the <code>inputMethodContext</code> property of
               the HTMLElement interface.</p>
-            <p>The returned InputMethodContext interface MAY not be directly
+            <p>The returned <a>InputMethodContext</a> interface MAY not be directly
               associated to the element.  An interface MAY be shared
               among elements under an innermost editable or focusable element.
               In that case, <code>target</code> property in the
-              InputMethodContext interface points to the element which owns
+              <a>InputMethodContext</a> interface points to the element which owns
               the interface.</p>
           </dd>
       </dl>
@@ -703,7 +703,7 @@ function init() {
             inapplicable or unknown.</dd>
         <dt>readonly attribute HTMLElement? target</dt>
           <dd>
-            <p>Represents the element associated with the InputMethodContext
+            <p>Represents the element associated with the <a>InputMethodContext</a>
               object.</p>
             <p>Once a target element gets deleted or modified not to accept
               any input, any access to the
@@ -802,14 +802,14 @@ function init() {
     <p>This section describes practices for some use-cases.</p>
     <section id="life-of-inputmethodcontext">
       <h1>Life of InputMethodContext</h1>
-      <p>Once a <code>InputMethodContext</code> interface is obtained,
+      <p>Once a <a>InputMethodContext</a> interface is obtained,
         it should be valid for the lifetime of its <code>target</code>
         element's lifetime, as long as the element is editable or focusable.
         Once the target gets disabled,
         authors MAY NOT access an IME through the interface even after the
         target gets enabled again.  Once the target is deleted,
         any access to the interface is void.</p>
-      <p>Any access to the InputMethodContext interface makes sense
+      <p>Any access to the <a>InputMethodContext</a> interface makes sense
         mostly when the target element has focus.  In other words,
         it makes little sense if you access the interface when the target
         element doesn't have focus.
