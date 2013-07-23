@@ -90,10 +90,16 @@
       <p>This specification defines an &ldquo;IME API&rdquo; that provides
         Web applications with scripted access to an IME
         (<a href="#IME">input-method editor</a>) associated with
-        a hosting user agent. This IME API includes
-        an <a>InputMethodContext</a> interface, which provides methods to
-         retrieve detailed data from an in-progress IME
-         <a href="#ime-composition">composition</a>.</p>
+        a hosting user agent. This IME API includes:</p>
+        <ul>
+          <li>An <a>InputMethodContext</a> interface, which provides methods to
+            retrieve detailed data from an in-progress IME
+            <a href="#ime-composition">composition</a>.</li>
+          <li>A <a>Composition</a> dictionary, which represents read-only
+            attributes about the current
+            <a href="#ime-composition">composition</a>, such as actual text
+            and its associated information.</li>
+        </ul>
       <p>This API is designed to be used in conjunction with DOM events
         [[DOM-LEVEL-3-EVENTS]].</a></p>
     </section>
@@ -631,15 +637,21 @@ function init() {
           </dd>
       </dl>
     </section>
-    <section id="inputmethodcontext-interface">
-      <h1>The InputMethodContext Interface</h1>
-      <dl title="interface InputMethodContext" class="idl">
-        <dt>readonly attribute DOMString? text</dt>
+
+    <section id="composition-dictionary">
+      <h1>The Composition Dictionary</h1>
+      <p>This dictionary represents an ongoing IME composition. It provides
+        attributes representing the text being composed by an IME and
+        its associated information.</p>
+      <p class="note">It might be a good idea to add this dictionary to
+        <a href="http://www.w3.org/TR/DOM-Level-3-Events/#events-CompositionEvent">CompositionEvent.</a></p>
+      <dl title="dictionary Composition" class="idl">
+        <dt>readonly attribute DOMString text</dt>
           <dd>Represents the text being composed by an IME.
             The text attribute of this node is equal to the text
             attribute of a compositionupdate event when this is referenced
             in compositionupdate's event handler.</dd>
-        <dt>readonly attribute long? selectionStart</dt>
+        <dt>readonly attribute long selectionStart</dt>
           <dd><p>Represents the 0-based index to the first character of
             the selection in the current composition text.</p>
           <p class="note">An author can assume that
@@ -647,13 +659,20 @@ function init() {
             boundary fit in with any of <code>segments</code>, and
             that <code>selectionStart</code> is equal or less than
             <code>selectionEnd</code>.</p></dd>
-        <dt>readonly attribute long? selectionEnd</dt>
-          <dd>Represents the 0-based index to the next position of
+        <dt>readonly attribute long selectionEnd</dt>
+          <dd><p>Represents the 0-based index to the next position of
             the last character of the selection in the current composition
             text.
             If there is no selection, selectionStart and selectionEnd MUST
-            be the same value and they indicate the position of the caret.</dd>
-        <dt>readonly attribute sequence&lt;long&gt;? segments</dt>
+            be the same value and they indicate the position of the caret.</p>
+            <p>For example, if &ldquo;DEF&rdquo; is selected in composition
+              text &ldquo;abcDEFghi&rdquo;, <code>selectionStart</code> is 3
+              and <code>selectionEnd</code> is 6.
+              If the caret is between &ldquo;B&rdquo; and &ldquo;C&rdquo;
+              in composition text &ldquo;ABCD&rdquo;, both
+              <code>selectionStart</code> and <code>selectionEnd</code> are 2.
+          </p></dd>
+        <dt>readonly attribute sequence&lt;long&gt; segments</dt>
           <dd>If composition text is segmented into clauses by an IME,
              this array contains 0-based indices of the starting character of
              each clause in increasing order.  If composition text is not
@@ -669,6 +688,14 @@ function init() {
               the composition is desired.
             </p>
           </dd>
+      </dl>
+    </section>
+
+    <section id="inputmethodcontext-interface">
+      <h1>The InputMethodContext Interface</h1>
+      <dl title="interface InputMethodContext" class="idl">
+        <dt>readonly attribute Composition? composition</dt>
+          <dd>Represents the current composition.</dd>
         <dt>readonly attribute DOMString? locale</dt>
           <dd>Represents the locale of the current input method as
             a BCP-47 tag (e.g. "en-US").
