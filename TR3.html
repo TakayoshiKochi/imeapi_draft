@@ -28,17 +28,17 @@
         content: ">";
       }
     </style>
-    
-    
-    
-    
+
+
+
+
   <style>/*****************************************************************
  * ReSpec 3 CSS
  * Robin Berjon - http://berjon.com/
  *****************************************************************/
 
 /* --- INLINES --- */
-em.rfc2119 { 
+em.rfc2119 {
     text-transform:     lowercase;
     font-variant:       small-caps;
     font-style:         normal;
@@ -147,7 +147,7 @@ div.example-title {
     color: #b9ab2d;
 }
 div.example-title span {
-    text-transform: uppercase;   
+    text-transform: uppercase;
 }
 aside.example, div.example, div.illegal-example {
     padding: 0.5em;
@@ -162,7 +162,7 @@ aside.example, div.example {
     border-left-width: .5em;
     border-left-style: solid;
     border-color: #e0cb52;
-    background: #fcfaee;    
+    background: #fcfaee;
 }
 
 aside.example div.example {
@@ -453,34 +453,34 @@ table.exceptions table {
 <!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]--></head>
   <body class="h-entry"><div class="head">
   <p>
-    
+
       <a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/Icons/w3c_home.png"></a>
-    
+
   </p>
   <h1 class="title p-name" id="title" property="dcterms:title">Input Method Editor API</h1>
-  
+
   <h2 id="w3c-editor-s-draft-12-august-2013" property="dcterms:issued" datatype="xsd:dateTime" content="2013-08-11T15:00:00.000Z"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2013-08-12">12 August 2013</time></h2>
   <dl>
-    
+
       <dt>This version:</dt>
       <dd><a class="u-url" href="http://dvcs.w3.org/hg/ime-api/raw-file/default/Overview.html">http://dvcs.w3.org/hg/ime-api/raw-file/default/Overview.html</a></dd>
       <dt>Latest published version:</dt>
       <dd><a href="http://www.w3.org/TR/ime-api/">http://www.w3.org/TR/ime-api/</a></dd>
-    
-    
+
+
       <dt>Latest editor's draft:</dt>
       <dd><a href="http://dvcs.w3.org/hg/ime-api/raw-file/default/Overview.html">http://dvcs.w3.org/hg/ime-api/raw-file/default/Overview.html</a></dd>
-    
-    
-    
-    
-      
+
+
+
+
+
         <dt>Previous editor's draft:</dt>
         <dd><a href="http://www.w3.org/TR/2013/WD-ime-api-20130404/">http://www.w3.org/TR/2013/WD-ime-api-20130404/</a></dd>
-      
-    
-    
-    
+
+
+
+
     <dt>Editors:</dt>
     <dd class="p-author h-card vcard" rel="bibo:editor" inlist=""><span typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Takayoshi Kochi</span>, Google, <span class="ed_mailto"><a class="u-email email" rel="foaf:mbox" href="mailto:kochi@google.com">kochi@google.com</a></span></span>
 </dd>
@@ -490,18 +490,18 @@ table.exceptions table {
 <dd class="p-author h-card vcard" rel="bibo:editor" inlist=""><span typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Hironori Bono (坊野 博典)</span>, (formerly) Google</span>
 </dd>
 
-    
-    
+
+
   </dl>
-  
-  
-  
-  
-    
+
+
+
+
+
       <p class="copyright">
         <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> ©
         2013
-        
+
         <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup>
         (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
         <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
@@ -510,8 +510,8 @@ table.exceptions table {
         <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
         <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.
       </p>
-    
-  
+
+
   <hr>
 </div>
     <section rel="bibo:chapter" resource="#abstract" typeof="bibo:Chapter" datatype="" property="dcterms:abstract" class="introductory" id="abstract"><h2>Abstract</h2>
@@ -531,71 +531,71 @@ table.exceptions table {
       <p>This API is designed to be used in conjunction with DOM events
         [<cite><a href="#bib-DOM-LEVEL-3-EVENTS" class="bibref">DOM-LEVEL-3-EVENTS</a></cite>].</p>
     </section><section rel="bibo:chapter" resource="#sotd" typeof="bibo:Chapter" id="sotd" class="introductory"><h2>Status of This Document</h2>
-  
-    
-      
+
+
+
         <p>
           <em>This section describes the status of this document at the time of its publication. Other
           documents may supersede this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision
           of this technical report can be found in the <a href="http://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports
           index</a> at http://www.w3.org/TR/.</em>
         </p>
-        
+
       <p>
         This document is a proposal that is being made available for public
         review in order to solicit feedback, particularly from
         implementors, with a goal of potential cross-browser implementation
         and standardization.
       </p>
-    
+
         <p>
           This document was published by the <a href="http://www.w3.org/2008/webapps/">Web Applications Working Group</a> as an Editor's Draft.
-          
-          
-          If you wish to make comments regarding this document, please send them to 
-          <a href="mailto:public-webapps@w3.org">public-webapps@w3.org</a> 
+
+
+          If you wish to make comments regarding this document, please send them to
+          <a href="mailto:public-webapps@w3.org">public-webapps@w3.org</a>
           (<a href="mailto:public-webapps-request@w3.org?subject=subscribe">subscribe</a>,
           <a href="http://lists.w3.org/Archives/Public/public-webapps/">archives</a>).
-          
-          
-          
-          
+
+
+
+
             All comments are welcome.</p>
-          
-        
+
+
           <p>
             Publication as an Editor's Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr> Membership.
-            This is a draft document and may be updated, replaced or obsoleted by other documents at 
+            This is a draft document and may be updated, replaced or obsoleted by other documents at
             any time. It is inappropriate to cite this document as other than work in progress.
           </p>
-        
-        
+
+
         <p>
-          
-            This document was produced by a group operating under the 
-             
+
+            This document was produced by a group operating under the
+
                 <a id="sotd_patent" about="" rel="w3p:patentRules" href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
-            
-          
-          
-          
-            
-              <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="http://www.w3.org/2004/01/pp-impl/42538/status" rel="disclosure">public list of any patent disclosures</a> 
-            
-            made in connection with the deliverables of the group; that page also includes instructions for 
+
+
+
+
+
+              <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="http://www.w3.org/2004/01/pp-impl/42538/status" rel="disclosure">public list of any patent disclosures</a>
+
+            made in connection with the deliverables of the group; that page also includes instructions for
             disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains
             <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a> must disclose the
             information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
             6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
-          
-          
+
+
         </p>
-        
-      
-    
-  
+
+
+
+
 </section><section id="toc"><h2 class="introductory">Table of Contents</h2><ul class="toc"><li class="tocline"><a class="tocxref" href="#introduction"><span class="secno">1. </span>Introduction</a></li><li class="tocline"><a class="tocxref" href="#background"><span class="secno">2. </span>Background: What’s an Input Method Editor?</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#composer-section"><span class="secno">2.1 </span>Composer</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#phonetic-composer-section"><span class="secno">2.1.1 </span>Phonetic Composer</a></li><li class="tocline"><a class="tocxref" href="#radical-composer-section"><span class="secno">2.1.2 </span>Radical Composer</a></li><li class="tocline"><a class="tocxref" href="#on-screen-keyboard-section"><span class="secno">2.1.3 </span>On-Screen Keyboard</a></li></ul></li><li class="tocline"><a class="tocxref" href="#converter-section"><span class="secno">2.2 </span>Converter</a></li></ul></li><li class="tocline"><a class="tocxref" href="#conformance"><span class="secno">3. </span>Conformance</a></li><li class="tocline"><a class="tocxref" href="#terminology"><span class="secno">4. </span>Terminology and Algorithms</a></li><li class="tocline"><a class="tocxref" href="#the-inputmethodcontext-property"><span class="secno">5. </span>The inputMethodContext property</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#attributes"><span class="secno">5.1 </span>Attributes</a></li></ul></li><li class="tocline"><a class="tocxref" href="#composition-interface"><span class="secno">6. </span>The Composition Interface</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#attributes-1"><span class="secno">6.1 </span>Attributes</a></li><li class="tocline"><a class="tocxref" href="#methods"><span class="secno">6.2 </span>Methods</a></li></ul></li><li class="tocline"><a class="tocxref" href="#inputmethodcontext-interface"><span class="secno">7. </span>The InputMethodContext Interface</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#attributes-2"><span class="secno">7.1 </span>Attributes</a></li><li class="tocline"><a class="tocxref" href="#methods-1"><span class="secno">7.2 </span>Methods</a></li></ul></li><li class="tocline"><a class="tocxref" href="#best-practices"><span class="secno">8. </span>Best Practices</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#life-of-inputmethodcontext"><span class="secno">8.1 </span>Life of InputMethodContext</a></li><li class="tocline"><a class="tocxref" href="#drawing-composition-text"><span class="secno">8.2 </span>Drawing Composition Text</a></li></ul></li><li class="tocline"><a class="tocxref" href="#references"><span class="secno">A. </span>References</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><span class="secno">A.1 </span>Normative references</a></li></ul></li></ul></section>
-    
+
     <section rel="bibo:chapter" resource="#introduction" typeof="bibo:Chapter" class="informative" id="introduction">
       <!--OddPage--><h2><span class="secno">1. </span>Introduction</h2><p><em>This section is non-normative.</em></p>
       <p>Even though existing Web-platform APIs allow developers to implement
@@ -1348,8 +1348,8 @@ table.exceptions table {
         <figcaption>Fig. <span class="figno">16</span> <span class="fig-title">Event flow of IME and an IME-aware Web application.</span></figcaption>
       </figure>
     </section>
-  
+
 
 </section><section rel="bibo:chapter" resource="#references" typeof="bibo:Chapter" class="appendix" id="references"><!--OddPage--><h2><span class="secno">A. </span>References</h2><section rel="bibo:chapter" resource="#normative-references" typeof="bibo:Chapter" id="normative-references"><h3><span class="secno">A.1 </span>Normative references</h3><dl about="" class="bibliography"><dt id="bib-DOM-LEVEL-3-EVENTS">[DOM-LEVEL-3-EVENTS]</dt><dd rel="dcterms:requires">Travis Leithead; Jacob Rossi; Doug Schepers; Björn Höhrmann; Philippe Le Hégaret. <a href="http://www.w3.org/TR/DOM-Level-3-Events/"><cite>Document Object Model (DOM) Level 3 Events Specification</cite></a>. 6 September 2012. W3C Last Call Working Draft. URL: <a href="http://www.w3.org/TR/DOM-Level-3-Events/">http://www.w3.org/TR/DOM-Level-3-Events/</a>
-</dd><dt id="bib-RFC2119">[RFC2119]</dt><dd rel="dcterms:requires">S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels.</cite></a> March 1997. Internet RFC 2119.  URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a> 
+</dd><dt id="bib-RFC2119">[RFC2119]</dt><dd rel="dcterms:requires">S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels.</cite></a> March 1997. Internet RFC 2119.  URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a>
 </dd></dl></section></section></body></html>
