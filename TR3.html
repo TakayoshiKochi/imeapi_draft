@@ -1342,6 +1342,49 @@ table.exceptions table {
     </section>
 
 
-</section><section rel="bibo:chapter" resource="#references" typeof="bibo:Chapter" class="appendix" id="references"><!--OddPage--><h2><span class="secno">A. </span>References</h2><section rel="bibo:chapter" resource="#normative-references" typeof="bibo:Chapter" id="normative-references"><h3><span class="secno">A.1 </span>Normative references</h3><dl about="" class="bibliography"><dt id="bib-DOM-LEVEL-3-EVENTS">[DOM-LEVEL-3-EVENTS]</dt><dd rel="dcterms:requires">Travis Leithead; Jacob Rossi; Doug Schepers; Björn Höhrmann; Philippe Le Hégaret. <a href="http://www.w3.org/TR/DOM-Level-3-Events/"><cite>Document Object Model (DOM) Level 3 Events Specification</cite></a>. 6 September 2012. W3C Last Call Working Draft. URL: <a href="http://www.w3.org/TR/DOM-Level-3-Events/">http://www.w3.org/TR/DOM-Level-3-Events/</a>
-</dd><dt id="bib-RFC2119">[RFC2119]</dt><dd rel="dcterms:requires">S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels.</cite></a> March 1997. Internet RFC 2119.  URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a>
-</dd></dl></section></section></body></html>
+</section>
+<section rel="bibo:chapter" resource="#references" typeof="bibo:Chapter" class="appendix" id="references"><!--OddPage-->
+<h2><span class="secno">A. </span>Revision History</h2>
+<section>
+<p>The following is an informative summary of the changes since the last
+publication of this specification.  A complete revision history of the
+Editor's Drafts of this specification can be found
+<a href="https://dvcs.w3.org/hg/ime-api/summary">here</a>.
+<ul>
+  <li>Example/use cases/best practices
+    <ul>
+      <li>Removed Javascript IME use-case</li>
+      <li>Removed example1 (drawing composition text in &lt;canvas&gt;)</li>
+      <li>Added example code for drawing composition text.</li>
+      <li>Added an explanation of InputMethodContext's scope in best practices section.</li>
+    </ul></li>
+  <li>API
+    <ul>
+      <li>Added target attribute <a href="https://dvcs.w3.org/hg/ime-api/raw-file/tip/proposals/IMEProposal.html">proposed by Microsoft</a>.</li>
+      <li>Renamed getInputContext() to .inputMethodContext per
+        <a href="http://lists.w3.org/Archives/Public/public-webapps/2013AprJun/0361.html">comment from James Su</a>.</li>
+      <li>Marked composition and target attributes as nullable.</li>
+      <li>Clarified that context is associated with one editable or focusable element.</li>
+      <li>Clarified the scope of setCaretRectangle()'s coordinates.</li>
+      <li>Removed confusing 'enabled' property and open() method in favor of
+        usual focus control and inputmode attribute.</li>
+      <li>Changed composition interface. the 'text' property was changed to plain
+        DOMString from Node, the 'caret' property was divided into the
+        'selectionStart' and the 'selectionEnd' properties.  Added the 'segments'
+        property to represent the position of segmentation of composition text.</li>
+    </ul></li>
+</ul>
+</section>
+<h2><span class="secno">B. </span>References</h2>
+<section rel="bibo:chapter" resource="#normative-references" typeof="bibo:Chapter" id="normative-references">
+<h3><span class="secno">B.1 </span>Normative references</h3>
+<dl about="" class="bibliography">
+  <dt id="bib-DOM-LEVEL-3-EVENTS">[DOM-LEVEL-3-EVENTS]</dt>
+    <dd rel="dcterms:requires">Travis Leithead; Jacob Rossi; Doug Schepers; Björn Höhrmann; Philippe Le Hégaret. <a href="http://www.w3.org/TR/DOM-Level-3-Events/"><cite>Document Object Model (DOM) Level 3 Events Specification</cite></a>. 6 September 2012. W3C Last Call Working Draft. URL: <a href="http://www.w3.org/TR/DOM-Level-3-Events/">http://www.w3.org/TR/DOM-Level-3-Events/</a></dd>
+  <dt id="bib-RFC2119">[RFC2119]</dt>
+    <dd rel="dcterms:requires">S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels.</cite></a> March 1997. Internet RFC 2119.  URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a></dd>
+</dl>
+</section>
+</section>
+</body>
+</html>
