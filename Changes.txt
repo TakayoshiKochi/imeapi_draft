@@ -1,3 +1,26 @@
+Changes since 20130815 Working Draft
+
+* API
+- Removed setExclusionRectangle in favor of using
+  candidatewindow{show,update,hide} events.
+- Added eneableEditingEvents()/disableEditingEvents(), for getting events
+  delivered to non-editable elements.  Removed a sentence about HTML5 inputmode
+  attribute for getting events.[3]
+- Renamed selection{Start,end} to activeSegment{Start,End} as a resut of the
+  discussion at [4].
+- Added oncandidatewindow{show,update,hide} events and
+  getCandidateWindowClientRect(), as proposed by Microsoft [1],
+  except
+  * isCandidateWindowVisible() is omitted due to redundancy.
+  * mentions about synchronousness are omitted due to consideration for
+    implementability on non-Windows platform.
+    (although this does not mean discouraging synchronous implementation.)
+
+[3] Adding a method to deliver editing-related events to a DOM element
+  https://www.w3.org/Bugs/Public/show_bug.cgi?id=23422
+[4] Composition dictionary should be changed
+  https://www.w3.org/Bugs/Public/show_bug.cgi?id=22059
+
 Changes since 20130404 Working Draft
 
 * Example/use cases/best practices
