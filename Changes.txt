@@ -1,5 +1,8 @@
 Changes since 20130815 Working Draft
 
+* Example/use cases/best practices
+- Modified example1 code (suggest UI) to use the new candidatewindow events.
+
 * API
 - Removed setExclusionRectangle in favor of using
   candidatewindow{show,update,hide} events.
