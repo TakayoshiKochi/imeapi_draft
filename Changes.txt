@@ -2,7 +2,7 @@ Changes since 20130404 Working Draft
 
 * Example/use cases/best practices
 - Removed Javascript IME use-case
-- Removed example1 (drawing composition text in <canvas>
+- Removed example1 (drawing composition text in <canvas>)
 - Added example code for drawing composition text.
 - Added an explanation of InputMethodContext's scope in best practices section.
 
@@ -10,16 +10,15 @@ Changes since 20130404 Working Draft
 - Added target attribute proposed by Microsoft [1]
 - Renamed getInputContext() to .inputMethodContext per comment from James Su
   [2]
-- Marked most attributes as nullable.
-- Clarified that context is usually associated with one editable or focusable
-  element.
+- Marked composition and target attributes as nullable.
+- Clarified that context is associated with one editable or focusable element.
 - Clarified the scope of setCaretRectangle()'s coordinates.
-- Removed (confusing) 'enabled' property and open() method in favor of
+- Removed confusing 'enabled' property and open() method in favor of
   usual focus control and inputmode attribute.
-- Merged composition dictionary into InputMethodContext, 'text' property
-  was changed to plain DOMString from Node, 'caret' property was divided
-  into 'selectionStart' and 'selectionEnd' properties.  Added 'segments'
-  property to determine the position of segment of composition text.
+- Changed composition interface. the 'text' property was changed to plain
+  DOMString from Node, the 'caret' property was divided into the
+  'selectionStart' and the 'selectionEnd' properties.  Added the 'segments'
+  property to represent the position of segmentation of composition text.
 
 [1] Microsoft proposal:
   https://dvcs.w3.org/hg/ime-api/raw-file/tip/proposals/IMEProposal.html
