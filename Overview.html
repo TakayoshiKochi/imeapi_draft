@@ -165,10 +165,10 @@
         <a href="use-cases/Overview.html">use cases for Input Method Editor
           API </a>document for more information about possible use cases.</p>
       <p>Consider the following examples.</p>
-      <p>This example shows the source which gives a hint for an IME
-      where the application wants it to avoid placing UI elements. A simple
-      web search page which gives a user suggestions while the user is
-      doing composition.</p>
+      <p>This example is a simple web search page which gives a user
+        search query suggestions while the user is doing composition.
+        This example code hides the suggestion box when IME candidate window
+        may overlap with it.</p>
 <pre class="example sh_javascript" id="ex-ime-suggest-position">
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -198,6 +198,11 @@ function init() {
     // This code only handles the compositionupdate event for brevity of the
     // example, but of course other input field changes should also be handled.
     node.addEventListener('compositionupdate', onCompositionUpdate, false);
+
+    // Register handlers for candidate window appearance change.
+    var ctx = node.inputMethodContext;
+    ctx.addEventListener('candidatewindowshow', onCandidateWindowShow, false);
+    ctx.addEventListener('candidatewindowhide', onCandidateWindowHide, false);
 }
 
 // Sends an XHR request to get search suggestions.
@@ -224,6 +229,18 @@ function expandSuggest(candidates) {
 function onCompositionUpdate(event) {
     var query = document.getElementById('input0').value;
     getSuggests(query);
+}
+
+// Hides suggest window once IME candidate window is shown.
+function onCandidateWindowShow(event) {
+    var suggest = document.getElementById('suggest0');
+    suggest.style.display = 'none';
+}
+
+// Unhides suggest window once IME candidate window is closed.
+function onCandidateWindowHide(event) {
+    var suggest = document.getElementById('suggest0');
+    suggest.style.display = '';
 }
 &lt;/script&gt;
 &lt;/head&gt;
