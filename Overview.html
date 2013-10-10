@@ -53,7 +53,7 @@
           specStatus: "ED",
           shortName:  "ime-api",
           edDraftURI: "http://dvcs.w3.org/hg/ime-api/raw-file/default/Overview.html",
-          prevED: "http://www.w3.org/TR/2012/WD-ime-api-20120524/",
+          prevED: "http://www.w3.org/TR/2013/WD-ime-api-20130404/",
           editors: [
                 {   name:       "Takayoshi Kochi",
                     company:    "Google",
@@ -90,10 +90,16 @@
       <p>This specification defines an &ldquo;IME API&rdquo; that provides
         Web applications with scripted access to an IME
         (<a href="#IME">input-method editor</a>) associated with
-        a hosting user agent. This IME API includes
-        an <a>InputMethodContext</a> interface, which provides methods to
-         retrieve detailed data from an in-progress IME
-         <a href="#ime-composition">composition</a>.</p>
+        a hosting user agent. This IME API includes:</p>
+        <ul>
+          <li>An <a>InputMethodContext</a> interface, which provides methods to
+            retrieve detailed data from an in-progress IME
+            <a href="#ime-composition">composition</a>.</li>
+          <li>A <a>Composition</a> interface, which represents read-only
+            attributes about the current
+            <a href="#ime-composition">composition</a>, such as actual text
+            and its associated information.</li>
+        </ul>
       <p>This API is designed to be used in conjunction with DOM events
         [[DOM-LEVEL-3-EVENTS]].</a></p>
     </section>
@@ -145,13 +151,19 @@
         this API also gives Web applications the ability to
         give a hint as to where to position a
         <a href="#composition-window">composition window</a>.
-      <p>There are also proposed standards for changing IME mode via CSS
+      <p>There are also proposed standards related to IME:
+        <ul>
+          <li>Changing IME mode via CSS
         (<a href="http://www.w3.org/TR/css3-ui/#ime-mode">ime-mode property
-        in CSS3 UI</a>) and controlling generic input modality
-        (<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/association-of-controls-and-forms.html#input-modalities:-the-inputmode-attribute">inputmode attribute</a>), but they are independent of this API and they
-        are for solving different issues.
+        in CSS3 UI</a>)
+          <li>Controlling generic input modality
+            (<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/association-of-controls-and-forms.html#input-modalities:-the-inputmode-attribute">inputmode attribute in HTML spec</a>)
+        </ul>
+        They can work independently of this API.
       </p>
-
+      <p>Please also refer to the separate
+        <a href="use-cases/Overview.html">use cases for Input Method Editor
+          API </a>document for more information about possible use cases.</p>
       <p>Consider the following examples.</p>
       <p>This example shows the source which gives a hint for an IME
       where the application wants it to avoid placing UI elements. A simple
@@ -234,7 +246,11 @@ function onCompositionUpdate(event) {
 
       <p>This example shows the source which draws composition text in
         its own style.</p>
-
+      <p class="note">For the usage of compositionupdate event, see also
+        the note in
+        <a href="#drawing-composition-text">Drawing Composition Text</a>
+        section.
+      </p>
 <pre class="example sh_javascript" id="ex-drawing-composition">
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -303,9 +319,6 @@ function init() {
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
-      <p>Please also refer to the separate
-        <a href="use-cases/Overview.html">use cases for Input Method Editor
-          API </a>document.</p>
     </section>
 
     <section class="informative" id="background">
@@ -390,12 +403,6 @@ function init() {
           of composers output phonetic characters, some composers (such as
           Bopomofo composers) output a placeholder character
           instead of phonetic characters while composing text.</p>
-
-        <p class="issue">need to define <i>composition window</i></p>
-
-        <p class="issue">probably should define <i>radical</i></p>
-
-        <p class="issue">probably should define <i>clause</i> here too</p>
 
         <section id="phonetic-composer-section">
           <h3>Phonetic Composer</h3>
@@ -603,7 +610,7 @@ function init() {
     <section>
       <h1>The inputMethodContext property</h1>
       <p>Authors can get an object which implements the
-        <a href="#inputmethodcontext-interface">InputMethodContext</a>
+        <a>InputMethodContext</a>
         interface on an editable or
         <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/editing.html#focusable">focusable</a>
         element, which can get keyboard input first
@@ -613,39 +620,45 @@ function init() {
         on non-editable, non-focusable element, a user agent SHOULD
         return a context for the innermost editable or focusable element
         to the element.  In this case, the <code>target</code> property
-        in the <a href="#inputmethodcontext-interface">InputMethodContext</a>
+        in the <a>InputMethodContext</a>
         interface points to the target element.
         If all ancestors of an element are neither editable nor focusable,
         this property returns <code>null</code>.</p>
       <p>To control the IME attached to an element, it is a good idea to add
         this property to the HTMLElement interface.</p>
       <dl title="partial interface HTMLElement" class="idl">
-        <dt>attribute InputMethodContext? inputMethodContext</dt>
+        <dt>readonly attribute InputMethodContext? inputMethodContext</dt>
           <dd>
-            <p>Returns an InputMethodContext interface associated with
+            <p>Returns an <a>InputMethodContext</a> interface associated with
               this element.</p>
             <p>To change the behavior of the IME associated with an
-              element, authors MUST first obtain an InputMethodContext
-              interface from the inputMethodContext property of
+              element, authors MUST first obtain an <a>InputMethodContext</a>
+              interface from the <code>inputMethodContext</code> property of
               the HTMLElement interface.</p>
-            <p>The returned InputMethodContext interface MAY not be directly
+            <p>The returned <a>InputMethodContext</a> interface MAY not be directly
               associated to the element.  An interface MAY be shared
               among elements under an innermost editable or focusable element.
               In that case, <code>target</code> property in the
-              InputMethodContext interface points to the element which owns
+              <a>InputMethodContext</a> interface points to the element which owns
               the interface.</p>
           </dd>
       </dl>
     </section>
-    <section id="inputmethodcontext-interface">
-      <h1>The InputMethodContext Interface</h1>
-      <dl title="interface InputMethodContext" class="idl">
-        <dt>readonly attribute DOMString? text</dt>
+
+    <section id="composition-interface">
+      <h1>The Composition Interface</h1>
+      <p>This interface represents an ongoing IME composition. It provides
+        attributes representing the text being composed by an IME and
+        its associated information.</p>
+      <p class="note">It might be a good idea to add this interface to
+        <a href="http://www.w3.org/TR/DOM-Level-3-Events/#events-CompositionEvent">CompositionEvent.</a></p>
+      <dl title="interface Composition" class="idl">
+        <dt>readonly attribute DOMString text</dt>
           <dd>Represents the text being composed by an IME.
             The text attribute of this node is equal to the text
             attribute of a compositionupdate event when this is referenced
             in compositionupdate's event handler.</dd>
-        <dt>readonly attribute long? selectionStart</dt>
+        <dt>readonly attribute long selectionStart</dt>
           <dd><p>Represents the 0-based index to the first character of
             the selection in the current composition text.</p>
           <p class="note">An author can assume that
@@ -653,13 +666,20 @@ function init() {
             boundary fit in with any of <code>segments</code>, and
             that <code>selectionStart</code> is equal or less than
             <code>selectionEnd</code>.</p></dd>
-        <dt>readonly attribute long? selectionEnd</dt>
-          <dd>Represents the 0-based index to the next position of
+        <dt>readonly attribute long selectionEnd</dt>
+          <dd><p>Represents the 0-based index to the next position of
             the last character of the selection in the current composition
             text.
             If there is no selection, selectionStart and selectionEnd MUST
-            be the same value and they indicate the position of the caret.</dd>
-        <dt>readonly attribute sequence&lt;long&gt;? segments</dt>
+            be the same value and they indicate the position of the caret.</p>
+            <p>For example, if &ldquo;DEF&rdquo; is selected in composition
+              text &ldquo;abcDEFghi&rdquo;, <code>selectionStart</code> is 3
+              and <code>selectionEnd</code> is 6.
+              If the caret is between &ldquo;B&rdquo; and &ldquo;C&rdquo;
+              in composition text &ldquo;ABCD&rdquo;, both
+              <code>selectionStart</code> and <code>selectionEnd</code> are 2.
+          </p></dd>
+        <dt>sequence&lt;unsigned long&gt; getSegments()</dt>
           <dd>If composition text is segmented into clauses by an IME,
              this array contains 0-based indices of the starting character of
              each clause in increasing order.  If composition text is not
@@ -675,21 +695,31 @@ function init() {
               the composition is desired.
             </p>
           </dd>
-        <dt>readonly attribute DOMString? locale</dt>
+      </dl>
+    </section>
+
+    <section id="inputmethodcontext-interface">
+      <h1>The InputMethodContext Interface</h1>
+      <dl title="interface InputMethodContext" class="idl">
+        <dt>readonly attribute Composition? composition</dt>
+          <dd>Represents the current composition.  If there is no ongoing
+            composition, returns null.</dd>
+        <dt>readonly attribute DOMString locale</dt>
           <dd>Represents the locale of the current input method as
             a BCP-47 tag (e.g. "en-US").
             The locale MAY be the empty string when
             inapplicable or unknown.</dd>
         <dt>readonly attribute HTMLElement? target</dt>
           <dd>
-            <p>Represents the element associated with the InputMethodContext
+            <p>Represents the element associated with the <a>InputMethodContext</a>
               object.</p>
             <p>Once a target element gets deleted or modified not to accept
               any input, any access to the
               <a href="#inputmethodcontext-interface">InputMethodContext</a>
               interface through the object has no effect.  Any method calls
-              will just return and accesses to any attribute will return
-              <code>null</code>.
+              will just return, accesses to <code>composition</code> and
+              <code>target</code> will return null, and accesses to
+              <code>locale</code> will return the empty string.
             </p>
           </dd>
         <dt>void confirmComposition()</dt>
@@ -781,14 +811,14 @@ function init() {
     <p>This section describes practices for some use-cases.</p>
     <section id="life-of-inputmethodcontext">
       <h1>Life of InputMethodContext</h1>
-      <p>Once a <code>InputMethodContext</code> interface is obtained,
+      <p>Once a <a>InputMethodContext</a> interface is obtained,
         it should be valid for the lifetime of its <code>target</code>
         element's lifetime, as long as the element is editable or focusable.
         Once the target gets disabled,
         authors MAY NOT access an IME through the interface even after the
         target gets enabled again.  Once the target is deleted,
         any access to the interface is void.</p>
-      <p>Any access to the InputMethodContext interface makes sense
+      <p>Any access to the <a>InputMethodContext</a> interface makes sense
         mostly when the target element has focus.  In other words,
         it makes little sense if you access the interface when the target
         element doesn't have focus.
@@ -796,6 +826,14 @@ function init() {
     </section>
     <section id="drawing-composition-text">
       <h1>Drawing Composition Text</h1>
+      <p class="note" id="note-beforeInput">As of this writing, the order of
+        <code>compositionupdate</code> event and DOM update is being
+        discussed
+        (see <a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=18931">Bug 18931</a>)
+        and if <code>compositionupdate</code> event happens after
+        DOM modification, this section has to be rewritten using
+        <code>beforeInput</code> event, which is also being discussed.
+        Example 2 code should be updated as well.</p>
       <p>If a Web application wants to draw composition text by itself,
         it SHOULD handle the <code>compositionupdate</code> event
         to get notified from the IME that the composition text has been
