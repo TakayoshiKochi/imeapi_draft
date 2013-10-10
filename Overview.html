@@ -219,14 +219,6 @@ function expandSuggest(candidates) {
         suggest.appendChild(document.createElement('li'));
         suggest.childNodes[i].textContent = candidates[i];
     }
-    // Set exclusion area hint for the IME.
-    var input = document.getElementById('input0');
-    var context = input.inputMethodContext;
-    var relative_x = suggest.offsetLeft - input.offsetLeft;
-    var relative_y = suggest.offsetTop - input.offsetTop;
-    context.setExclusionRectangle(input, relative_x, relative_y,
-                                         suggest.offsetWidth,
-                                         suggest.offsetHeight);
 }
 
 function onCompositionUpdate(event) {
@@ -777,30 +769,6 @@ function init() {
               coordinates to the screen coordinates when it shows a
               <a href="#candidate-window">candidate window</a>.
           </dd>
-        <dt>void setExclusionRectangle(Node anchor, long x, long y, long w, long h)</dt>
-          <dd>
-            <p>Gives a hint for a user agent to avoid showing any input
-              related UI elements (e.g. on-screen keyboard, a candidate window)
-              on the given rectangle, for an application to show some
-              input-related UI elements (such as search suggestions) in the
-              rectangle.</p>
-            <p>A user agent MAY use this hint to explicitly control the
-              position for a candidate window, or determine zoom level
-              and view port when on-screen keyboard comes in.</p>
-            <p>These set values apply only to the current
-              composition session (i.e. until <code>compositionend</code>
-              event is sent).</p>
-            <ul>
-              <li>The <var>anchor</var> parameter represents the DOM node
-                against which the rectangle is positioned.
-              </li>
-              <li>The <var>x</var>, and <var>y</var> are the offsets to the
-                top-left of the rectangle relative to <var>anchor</var>
-                node's top-left.</li>
-              <li>The <var>w</var>, and <var>h</var> are width and height of
-                the rectangle.</li>
-            </ul>
-          </dd>
       </dl>
     </section>
 
@@ -847,9 +815,6 @@ function init() {
         an obtrusive position. To avoid this situation, a user agent may
         set some decent default position in the vicinity of the focused
         input field.
-        Optionally it MAY call
-        <code>setExclusionRectangle()</code> method to hint to the IME
-        that a certain area is not suitable for showing the IME UI.</p>
       <p>When a Web application draws composition text, it MUST call
         <code>preventDefault()</code> in <code>compositionupdate</code>
         handler so that the user agent will not draw the text.</p>
