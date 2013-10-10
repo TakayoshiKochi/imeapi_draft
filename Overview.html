@@ -301,6 +301,7 @@ function onCompositionUpdate(event) {
 
 function init() {
     var composition = document.getElementById('composition');
+    composition.enableEditingEvents();
     composition.focus();
     composition.addEventHandler('compositionupdate', onCompositionUpdate, false);
 }
@@ -769,6 +770,26 @@ function init() {
               coordinates to the screen coordinates when it shows a
               <a href="#candidate-window">candidate window</a>.
           </dd>
+        <dt>void enableEditingEvents()</dt>
+          <dd>
+            <p>Causes the target element of this context to get editing
+            events (e.g. <code>input</code>,
+            <code>compositionupdate</code>) delivered when the element
+            is focused.</p>
+            <p>If this method is called on a editable element (
+              <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>,
+              <code>contenteditable=true</code>), it has no effect.</p>
+          </dd>
+        <dt>void disableEditingEvents()</dt>
+          <dd>
+            <p>Causes the target element of this context to turn off
+              receiving editing events (e.g. <code>input</code>,
+            <code>compositionupdate</code>) after
+            <code>enableEditingEvents()</code> is called.</p>
+            <p>If this method is called on a editable element (
+              <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>,
+              <code>contenteditable=true</code>), it has no effect.</p>
+          </dd>
       </dl>
     </section>
 
@@ -821,8 +842,8 @@ function init() {
       <p>When a Web application wants to handle DOM level3 composition events
         on a non-<code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>,
         or <code>contenteditable</code> node,
-        it MUST add <code>inputmode</code> attribute with a proper value
-        and move focus to it to get composition events.</p>
+        it MUST call <code>enableEditingEvents()</code> method beforehand
+        and focus it to get composition events.</p>
       <p>The following diagram shows the flow of events
         among the keyboard, the IME, the user agent, and the Web application
         when a user types

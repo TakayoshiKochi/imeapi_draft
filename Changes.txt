@@ -3,6 +3,12 @@ Changes since 20130815 Working Draft
 * API
 - Removed setExclusionRectangle in favor of using
   candidatewindow{show,update,hide} events.
+- Added eneableEditingEvents()/disableEditingEvents(), for getting events
+  delivered to non-editable elements.  Removed a sentence about HTML5 inputmode
+  attribute for getting events.[3]
+
+[3] Adding a method to deliver editing-related events to a DOM element
+  https://www.w3.org/Bugs/Public/show_bug.cgi?id=23422
 
 Changes since 20130404 Working Draft
 
