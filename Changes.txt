@@ -6,9 +6,13 @@ Changes since 20130815 Working Draft
 - Added eneableEditingEvents()/disableEditingEvents(), for getting events
   delivered to non-editable elements.  Removed a sentence about HTML5 inputmode
   attribute for getting events.[3]
+- Renamed selection{Start,end} to activeSegment{Start,End} as a resut of the
+  discussion at [4].
 
 [3] Adding a method to deliver editing-related events to a DOM element
   https://www.w3.org/Bugs/Public/show_bug.cgi?id=23422
+[4] Composition dictionary should be changed
+  https://www.w3.org/Bugs/Public/show_bug.cgi?id=22059
 
 Changes since 20130404 Working Draft
 

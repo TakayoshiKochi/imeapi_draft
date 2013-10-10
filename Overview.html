@@ -279,7 +279,7 @@ function onCompositionUpdate(event) {
         var span = document.createElement('span');
         span.classList.add('clause');
         var selected = false;
-        if (segments[i] == ctx.selectionStart) {
+        if (segments[i] == ctx.activeSegmentStart) {
             selected = true;
             span.classList.add('selected');
         }
@@ -651,26 +651,27 @@ function init() {
             The text attribute of this node is equal to the text
             attribute of a compositionupdate event when this is referenced
             in compositionupdate's event handler.</dd>
-        <dt>readonly attribute long selectionStart</dt>
+        <dt>readonly attribute long activeSegmentStart</dt>
           <dd><p>Represents the 0-based index to the first character of
-            the selection in the current composition text.</p>
+            the active segment in the current composition text.</p>
           <p class="note">An author can assume that
-            <code>selectionStart</code> and <code>selectionEnd</code>
+            <code>activeSegmentStart</code> and <code>activeSegmentEnd</code>
             boundary fit in with any of <code>segments</code>, and
-            that <code>selectionStart</code> is equal or less than
-            <code>selectionEnd</code>.</p></dd>
-        <dt>readonly attribute long selectionEnd</dt>
+            that <code>activeSegmentStart</code> is equal or less than
+            <code>activeSegmentEnd</code>.</p></dd>
+        <dt>readonly attribute long activeSegmentEnd</dt>
           <dd><p>Represents the 0-based index to the next position of
-            the last character of the selection in the current composition
+            the last character of the active segment in the current composition
             text.
-            If there is no selection, selectionStart and selectionEnd MUST
-            be the same value and they indicate the position of the caret.</p>
+            If there is no active segment, activeSegmentStart and
+            activeSegmentEnd MUST be the same value and they indicate
+            the position of the caret.</p>
             <p>For example, if &ldquo;DEF&rdquo; is selected in composition
-              text &ldquo;abcDEFghi&rdquo;, <code>selectionStart</code> is 3
-              and <code>selectionEnd</code> is 6.
+              text &ldquo;abcDEFghi&rdquo;, <code>activeSegmentStart</code> is 3
+              and <code>activeSegmentEnd</code> is 6.
               If the caret is between &ldquo;B&rdquo; and &ldquo;C&rdquo;
               in composition text &ldquo;ABCD&rdquo;, both
-              <code>selectionStart</code> and <code>selectionEnd</code> are 2.
+              <code>actieSegmentStart</code> and <code>activeSegmentEnd</code> are 2.
           </p></dd>
         <dt>sequence&lt;unsigned long&gt; getSegments()</dt>
           <dd>If composition text is segmented into clauses by an IME,
