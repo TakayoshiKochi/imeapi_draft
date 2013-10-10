@@ -694,7 +694,47 @@ function init() {
 
     <section id="inputmethodcontext-interface">
       <h1>The InputMethodContext Interface</h1>
-      <dl title="interface InputMethodContext" class="idl">
+      <dl title="interface InputMethodContext : EventTarget" class="idl">
+        <dt>attribute EventHandler  oncandidatewindowshow</dt>
+        <dd><p>This event should be fired immediately after the IME
+            candidate window is set to appear, which means immediately after
+            the position information for the candidate window has been
+            identified.</p>
+          <p>Common things among oncandidatewindowshow/update/hide events:</p>
+          <ol><lI>To get a better performance, these events are of the generic
+              &quot;Event&quot; interface and fired directly to the
+              <a>InputMethodContext</a> object. They do not bubble or capture
+              through the DOM tree.</li>
+            <li>Event handlers for these events will be able to use the
+              &quot;this&quot; property of the event, or event.target /
+              event.currentTarget to refer to the <a>InputMethodContext</a>
+              object upon which the event is firing.</li>
+            <li>These events are not cancellable, meaning that the appearing
+              of the candicate window cannot be controlled via these events
+              by cancelling them.
+            <li>Web applications need only register for these events once
+              per element (the handlers will remain valid for as long as
+              the element is alive.</li>
+        </ol></dd>
+        <dt>attribute EventHandler  oncandidatewindowupdate</dt>
+        <dd><p>This events should be fired after either:</p>
+          <ol>
+            <li>The IME candidate window has been identified as needing to
+              change size (but before animating to the new position) as a
+              result of displaying new/changed alternatives or predictions.</li>
+            <li>The IME candidate window has been identified as needing to
+              change size (but before animating to the new position) due to
+              user-zoom, browser frame resize, or other action that changes
+              the candidate window placement.</li>
+          </ol>
+          <p>In either case, the event should be fired after the new
+            size/location of the candidate window is known by the user agent.
+        </dd>
+        <dt>attribute EventHandler  oncandidatewindowhide</dt>
+        <dd>This event should be fired after the candidate window is fully
+          hidden (after the dismissal animation has ended, if there is any).
+          The event handler code will see that no ClientRect can be obtained
+          inside this handler.</dd>
         <dt>readonly attribute Composition? composition</dt>
           <dd>Represents the current composition.  If there is no ongoing
             composition, returns null.</dd>
@@ -716,6 +756,13 @@ function init() {
               <code>locale</code> will return the empty string.
             </p>
           </dd>
+        <dt>ClientRect  getCandidateWindowClientRect()</dt>
+        <dd><p>
+            An web application may use this information to explicitly control
+            the position for its own input-related UI elements, such as search
+            suggestions.</p>
+          <p>Note: client coordinates are in document pixels and have origin
+            at the upper-left corner of the client area.</p></dd>
         <dt>void confirmComposition()</dt>
           <dd>
           <p>Finishes the ongoing composition of the hosting user agent.</p>

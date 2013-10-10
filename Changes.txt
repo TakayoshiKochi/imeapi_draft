@@ -8,6 +8,13 @@ Changes since 20130815 Working Draft
   attribute for getting events.[3]
 - Renamed selection{Start,end} to activeSegment{Start,End} as a resut of the
   discussion at [4].
+- Added oncandidatewindow{show,update,hide} events and
+  getCandidateWindowClientRect(), as proposed by Microsoft [1],
+  except
+  * isCandidateWindowVisible() is omitted due to redundancy.
+  * mentions about synchronousness are omitted due to consideration for
+    implementability on non-Windows platform.
+    (although this does not mean discouraging synchronous implementation.)
 
 [3] Adding a method to deliver editing-related events to a DOM element
   https://www.w3.org/Bugs/Public/show_bug.cgi?id=23422
