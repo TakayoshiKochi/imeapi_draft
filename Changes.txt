@@ -2,14 +2,15 @@ Changes since 20130815 Working Draft
 
 * Example/use cases/best practices
 - Modified example1 code (suggest UI) to use the new candidatewindow events.
+- Fixed some ReSpec warnings (no visible change).
 
 * API
 - Removed setExclusionRectangle in favor of using
   candidatewindow{show,update,hide} events.
-- Added eneableEditingEvents()/disableEditingEvents(), for getting events
+- Added enableEditingEvents()/disableEditingEvents(), for getting events
   delivered to non-editable elements.  Removed a sentence about HTML5 inputmode
   attribute for getting events.[3]
-- Renamed selection{Start,end} to activeSegment{Start,End} as a resut of the
+- Renamed selection{Start,end} to activeSegment{Start,End} as a result of the
   discussion at [4].
 - Added oncandidatewindow{show,update,hide} events and
   getCandidateWindowClientRect(), as proposed by Microsoft [1],
@@ -18,6 +19,8 @@ Changes since 20130815 Working Draft
   * mentions about synchronousness are omitted due to consideration for
     implementability on non-Windows platform.
     (although this does not mean discouraging synchronous implementation.)
+- Added compositionStartOffset/compositionEndOffset to InputMethodContext,
+  as proposed by Microsoft [1] [4].
 
 [3] Adding a method to deliver editing-related events to a DOM element
   https://www.w3.org/Bugs/Public/show_bug.cgi?id=23422
