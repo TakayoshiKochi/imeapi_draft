@@ -8,6 +8,8 @@ Changes since 20130815 Working Draft
     * CompositionEvent interface extension (segment information etc.)
     * setCaretRectangle() API
   - Delivering IME related events to non-editable elements
+  - confirmComposition() (not used for overlapping UI usecase)
+  - locale (further refinement required)
 
 * Example/use cases/best practices
 - Modified example1 code (suggest UI) to use the new candidatewindow events.
