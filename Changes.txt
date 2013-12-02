@@ -1,10 +1,31 @@
 Changes since 20130815 Working Draft
 
+* Split the draft into main and annex
+  To get the standardization process smoother, only core APIs are left in
+  the main draft and the following parts are pushed to an annex for future
+  discussion and inclusion:
+  - Drawing IME candidates in Javascript
+    * CompositionEvent interface extension (segment information etc.)
+    * setCaretRectangle() API
+  - Delivering IME related events to non-editable elements
+
 * Example/use cases/best practices
 - Modified example1 code (suggest UI) to use the new candidatewindow events.
 - Fixed some ReSpec warnings (no visible change).
 
 * API
+[CORE]
+- Added oncandidatewindow{show,update,hide} events and
+  getCandidateWindowClientRect(), as proposed by Microsoft [1],
+  except
+  * isCandidateWindowVisible() is omitted due to redundancy.
+  * mentions about synchronousness are dropped due to consideration for
+    implementability on non-Windows platform.
+    (although this does not mean discouraging synchronous implementation.)
+- Added compositionStartOffset/compositionEndOffset to InputMethodContext,
+  as proposed by Microsoft [1] [4].
+
+[ANNEX]
 - Removed setExclusionRectangle in favor of using
   candidatewindow{show,update,hide} events.
 - Added enableEditingEvents()/disableEditingEvents(), for getting events
@@ -12,15 +33,6 @@ Changes since 20130815 Working Draft
   attribute for getting events.[3]
 - Renamed selection{Start,end} to activeSegment{Start,End} as a result of the
   discussion at [4].
-- Added oncandidatewindow{show,update,hide} events and
-  getCandidateWindowClientRect(), as proposed by Microsoft [1],
-  except
-  * isCandidateWindowVisible() is omitted due to redundancy.
-  * mentions about synchronousness are omitted due to consideration for
-    implementability on non-Windows platform.
-    (although this does not mean discouraging synchronous implementation.)
-- Added compositionStartOffset/compositionEndOffset to InputMethodContext,
-  as proposed by Microsoft [1] [4].
 - Merge Composition interface into D3E CompositionEvent.
   This makes sense as whenever any content or state of composition changes,
   a CompositionEvent is fired, and it avoids any consistency issue between
