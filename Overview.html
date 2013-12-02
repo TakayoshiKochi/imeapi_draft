@@ -91,8 +91,10 @@
         (<a href="#IME">input-method editor</a>) associated with
         a hosting user agent. This IME API includes:</p>
         <ul>
-          <li>An <a>InputMethodContext</a> interface, which provides methods to
-            interact with current UI state of IME.</li>
+          <li>An <a>InputMethodContext</a> interface, which provides
+            attributes, events, and methods to interact
+            with current UI state of IME.
+          </li>
         </ul>
       <p>This API is designed to be used in conjunction with DOM events
         [[DOM-LEVEL-3-EVENTS]].</a></p>
@@ -119,8 +121,8 @@
         to retrieve <a href="#ime-composition">composition text</a>
         while it is being composed in an associated IME.</p>
       <p>However, Web applications can still run into difficulties
-        controlling IME, such as detecting any UI overlap between
-        IME <a href="#candidate-window">candidate window</a> and its
+        interarcting with IME, such as detecting any UI overlap between
+        <a href="#candidate-window">IME candidate window</a> and its
         underlying UI elements.</p>
       <p>To solve the IME-related problems, this specification introduces
         an IME API that allows Web applications to interact with the IME.
@@ -138,8 +140,9 @@
       <p>Please also refer to the separate
         <a href="use-cases/Overview.html">use cases for Input Method Editor
           API </a>document for more information about possible use cases.</p>
-      <p>For other possible improvements for interacting IME API, please
-      refer the <a href="Annex.html">IME API annex</a> document.</p>
+      <p>For other possible improvements for interacting with IME, please
+        refer the <a href="Annex.html">IME API annex</a> document
+        as a non-normative reference.</p>
       <p>Consider the following example.</p>
       <p>This example is a simple web search page which gives a user
         search query suggestions while the user is doing composition.
@@ -495,8 +498,8 @@ function onCandidateWindowHide(event) {
           &lsquo;&#x5371;&#x6A5F;&#x4E00;&#x767A;&rsquo; is grammatically
           incorrect.</p>
         <p>On a mobile platform, candidates may not appear in a separate
-          window, but occupies some part of the screen for the user to choose
-          the candidate word that they intend.
+          window, but occupy some part of the screen for the user to choose
+          the candidate word that they intend as a part of on-screen keyboard.
         </p>
         <figure id="fig-mobile-ime">
           <p><img height="651" src="images/mobile_ime_composition.png" width="416"></p>
@@ -520,13 +523,11 @@ function onCandidateWindowHide(event) {
       <h1>The inputMethodContext property</h1>
       <p>Authors can get an object which implements the
         <a>InputMethodContext</a>
-        interface on an editable or
-        <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/editing.html#focusable">focusable</a>
+        interface on an editable
         element, which can get keyboard input first
         (i.e. a &ldquo;target&rdquo; element).
-.
         If this property is accessed
-        on non-editable, non-focusable element, a user agent SHOULD
+        on a non-editable element, a user agent SHOULD
         return a context for the innermost editable or focusable element
         to the element.  In this case, the <code>target</code> property
         in the <a>InputMethodContext</a>
@@ -597,11 +598,6 @@ function onCandidateWindowHide(event) {
           hidden (after the dismissal animation has ended, if there is any).
           The event handler code will see that no ClientRect can be obtained
           inside this handler.</dd>
-        <dt>readonly attribute DOMString locale</dt>
-          <dd>Represents the locale of the current input method as
-            a BCP-47 tag (e.g. "en-US").
-            The locale MAY be the empty string when
-            inapplicable or unknown.</dd>
         <dt>readonly attribute HTMLElement? target</dt>
           <dd>
             <p>Represents the element associated with the <a>InputMethodContext</a>
@@ -662,62 +658,6 @@ function onCandidateWindowHide(event) {
             and when a script needs the behavior of confirmComposition(), it
             can commit the current composition and then call
             cancelComposition().</p>
-          </dd>
-        <dt>void setCaretRectangle(Node anchor, long x, long y, long w, long h)</dt>
-          <dd>
-            <p>Notifies the rectangle of composition text to a user agent. When
-            a user agent renders a
-            <a href="#candidate-window">candidate window</a>
-            or a composition window, it uses
-            this rectangle to draw windows next to the composition or
-            prevent these windows from being rendered on this rectangle.</p>
-            <p>If a Web application wants to render composition text itself,
-            it has to tell a user agent where the composition text will be
-            located whenever it gets <code>compositionstart</code> event
-            or <code>compositionend</code> event.</p>
-            <p>On Windows, this rectangle is used as a parameter for
-            ImmSetCandidateWindow(). On Mac, this rectangle is sent when it calls
-            [firstRectForCharacterRange:]. On Linux (GTK), this rectangle is used as a
-            parameter for gtk_im_context_set_cursor_location().</p>
-            <ul>
-              <li>The <var>anchor</var> parameter represents the DOM node
-                against which the rectangle is positioned. This MAY
-                be a different node than the node that listens to composition
-                events which has focus and therefore a Web application can
-                draw composition text where it does not have focus.
-              </li>
-              <li>The <var>x</var>, and <var>y</var> are the offsets to the
-                top-left of the rectangle relative to <var>anchor</var>
-                node's top-left.</li>
-              <li>The <var>w</var>, and <var>h</var> are width and height of
-                the rectangle.</li>
-            </ul>
-            <p>These set values apply only to the current
-              composition session (i.e. until <code>compositionend</code>
-              event is sent).</p>
-            <p>A user agent MAY need to convert these
-              coordinates to the screen coordinates when it shows a
-              <a href="#candidate-window">candidate window</a>.
-          </dd>
-        <dt>void enableEditingEvents()</dt>
-          <dd>
-            <p>Causes the target element of this context to get editing
-            events (e.g. <code>input</code>,
-            <code>compositionupdate</code>) delivered when the element
-            is focused.</p>
-            <p>If this method is called on a editable element (
-              <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>,
-              <code>contenteditable=true</code>), it has no effect.</p>
-          </dd>
-        <dt>void disableEditingEvents()</dt>
-          <dd>
-            <p>Causes the target element of this context to turn off
-              receiving editing events (e.g. <code>input</code>,
-            <code>compositionupdate</code>) after
-            <code>enableEditingEvents()</code> is called.</p>
-            <p>If this method is called on a editable element (
-              <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>,
-              <code>contenteditable=true</code>), it has no effect.</p>
           </dd>
       </dl>
     </section>
