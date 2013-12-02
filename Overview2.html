@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <!-- foox -->
+    <!-- foo -->
     <meta charset="UTF-8">
     <title>Input Method Editor API</title>
     <style>
@@ -94,7 +94,7 @@
           <li>An <a>InputMethodContext</a> interface, which provides methods to
             retrieve detailed data from an in-progress IME
             <a href="#ime-composition">composition</a>.</li>
-          <li>A <a>Composition</a> interface, which represents read-only
+          <li>A <a>CompositionEvent</a> interface, which represents read-only
             attributes about the current
             <a href="#ime-composition">composition</a>, such as actual text
             and its associated information.</li>
@@ -143,7 +143,7 @@
         This specification introduces interfaces for
         <a href="#ime-composition">compositions</a>,
         so Web applications can read detailed composition data.
-        A <a>Composition</a> object provides a reference to an ongoing IME
+        A <a>CompositionEvent</a> object provides a reference to an ongoing IME
         <a href="#ime-composition">composition</a>,
         so Web applications can retrieve the composition text and
         its attributes.  In addition,
@@ -289,13 +289,13 @@ function onCompositionUpdate(event) {
     var ctx = target.inputMethodContext;
 
     // Create clause spans.
-    var text = ctx.text;
-    var segments = ctx.segments;
+    var text = event.data;
+    var segments = event.getSegments();
     for (i = 0; i &lt; segments.length; i++) {
         var span = document.createElement('span');
         span.classList.add('clause');
         var selected = false;
-        if (segments[i] == ctx.activeSegmentStart) {
+        if (segments[i] == event.activeSegmentStart) {
             selected = true;
             span.classList.add('selected');
         }
@@ -303,7 +303,7 @@ function onCompositionUpdate(event) {
         if (i &lt; segments.length - 1) {
              end = segments[i + 1];
         }
-        span.textContent = text.substring(ctx.segments[i], end);
+        span.textContent = text.substring(segments[i], end);
         target.appendChild(span);
         if (selected) {
             ctx.setCaretRectangle(document.body, rect.left, rect.top,
@@ -654,19 +654,13 @@ function init() {
       </dl>
     </section>
 
-    <section id="composition-interface">
-      <h1>The Composition Interface</h1>
-      <p>This interface represents an ongoing IME composition. It provides
-        attributes representing the text being composed by an IME and
-        its associated information.</p>
-      <p class="note">It might be a good idea to add this interface to
-        <a href="http://www.w3.org/TR/DOM-Level-3-Events/#events-CompositionEvent">CompositionEvent.</a></p>
-      <dl title="interface Composition" class="idl">
-        <dt>readonly attribute DOMString text</dt>
-          <dd>Represents the text being composed by an IME.
-            The text attribute of this node is equal to the text
-            attribute of a compositionupdate event when this is referenced
-            in compositionupdate's event handler.</dd>
+    <section id="compositionevent-interface">
+      <h1>The CompositionEvent Interface</h1>
+      <p>This interface represents an ongoing IME composition, by extending
+        <a href="http://www.w3.org/TR/DOM-Level-3-Events/#interface-CompositionEvent">CompositionEvent interface</a> definedin [[DOM-LEVEL-3-EVENTS]].
+        It provides attributes representing the text being composed by an IME
+        and its associated information.</p>
+      <dl title="partial interface CompositionEvent" class="idl">
         <dt>readonly attribute long activeSegmentStart</dt>
           <dd><p>Represents the 0-based index to the first character of
             the active segment in the current composition text.</p>
@@ -751,9 +745,6 @@ function init() {
           hidden (after the dismissal animation has ended, if there is any).
           The event handler code will see that no ClientRect can be obtained
           inside this handler.</dd>
-        <dt>readonly attribute Composition? composition</dt>
-          <dd>Represents the current composition.  If there is no ongoing
-            composition, returns null.</dd>
         <dt>readonly attribute DOMString locale</dt>
           <dd>Represents the locale of the current input method as
             a BCP-47 tag (e.g. "en-US").
