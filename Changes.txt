@@ -21,6 +21,10 @@ Changes since 20130815 Working Draft
     (although this does not mean discouraging synchronous implementation.)
 - Added compositionStartOffset/compositionEndOffset to InputMethodContext,
   as proposed by Microsoft [1] [4].
+- Merge Composition interface into D3E CompositionEvent.
+  This makes sense as whenever any content or state of composition changes,
+  a CompositionEvent is fired, and it avoids any consistency issue between
+  composition events and the content of Composition.
 
 [3] Adding a method to deliver editing-related events to a DOM element
   https://www.w3.org/Bugs/Public/show_bug.cgi?id=23422
