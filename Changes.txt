@@ -2,8 +2,8 @@ Changes since 20130815 Working Draft
 
 * Split the draft into main and annex
   To get the standardization process smoother, only core APIs are left in
-  the main draft and the following parts are pushed to an annex for future
-  discussion and inclusion:
+  the main draft and the following parts are pushed to an annex for further
+  discussions or refinements:
   - Drawing IME candidates in Javascript
     * CompositionEvent interface extension (segment information etc.)
     * setCaretRectangle() API
