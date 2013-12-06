@@ -604,7 +604,11 @@ table.exceptions table {
       
     
   
-</section><section id="toc"><h2 class="introductory" aria-level="1" role="heading" id="h2_toc">Table of Contents</h2><ul class="toc" role="directory" id="respecContents"><li class="tocline"><a href="#introduction" class="tocxref"><span class="secno">1. </span>Introduction</a></li><li class="tocline"><a href="#background" class="tocxref"><span class="secno">2. </span>Background: What’s an Input Method Editor?</a><ul class="toc"><li class="tocline"><a href="#composer-section" class="tocxref"><span class="secno">2.1 </span>Composer</a><ul class="toc"><li class="tocline"><a href="#phonetic-composer-section" class="tocxref"><span class="secno">2.1.1 </span>Phonetic Composer</a></li><li class="tocline"><a href="#radical-composer-section" class="tocxref"><span class="secno">2.1.2 </span>Radical Composer</a></li><li class="tocline"><a href="#on-screen-keyboard-section" class="tocxref"><span class="secno">2.1.3 </span>On-Screen Keyboard</a></li></ul></li><li class="tocline"><a href="#converter-section" class="tocxref"><span class="secno">2.2 </span>Converter</a></li></ul></li><li class="tocline"><a href="#conformance" class="tocxref"><span class="secno">3. </span>Conformance</a></li><li class="tocline"><a href="#terminology" class="tocxref"><span class="secno">4. </span>Terminology and Algorithms</a></li><li class="tocline"><a href="#the-inputmethodcontext-property" class="tocxref"><span class="secno">5. </span>The inputMethodContext property</a><ul class="toc"><li class="tocline"><a href="#attributes" class="tocxref"><span class="secno">5.1 </span>Attributes</a></li></ul></li><li class="tocline"><a href="#inputmethodcontext-interface" class="tocxref"><span class="secno">6. </span>The InputMethodContext Interface</a><ul class="toc"><li class="tocline"><a href="#attributes-1" class="tocxref"><span class="secno">6.1 </span>Attributes</a></li><li class="tocline"><a href="#methods" class="tocxref"><span class="secno">6.2 </span>Methods</a></li></ul></li><li class="tocline"><a href="#best-practices" class="tocxref"><span class="secno">7. </span>Best Practices</a><ul class="toc"><li class="tocline"><a href="#life-of-inputmethodcontext" class="tocxref"><span class="secno">7.1 </span>Life of InputMethodContext</a></li></ul></li><li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">8. </span>Acknowledgements</a></li><li class="tocline"><a href="#references" class="tocxref"><span class="secno">A. </span>References</a><ul class="toc"><li class="tocline"><a href="#normative-references" class="tocxref"><span class="secno">A.1 </span>Normative references</a></li><li class="tocline"><a href="#informative-references" class="tocxref"><span class="secno">A.2 </span>Informative references</a></li></ul></li></ul></section>
+</section><section id="toc"><h2 class="introductory" aria-level="1" role="heading" id="h2_toc">Table of Contents</h2><ul class="toc" role="directory" id="respecContents"><li class="tocline"><a href="#introduction" class="tocxref"><span class="secno">1. </span>Introduction</a></li><li class="tocline"><a href="#background" class="tocxref"><span class="secno">2. </span>Background: What’s an Input Method Editor?</a><ul class="toc"><li class="tocline"><a href="#composer-section" class="tocxref"><span class="secno">2.1 </span>Composer</a><ul class="toc"><li class="tocline"><a href="#phonetic-composer-section" class="tocxref"><span class="secno">2.1.1 </span>Phonetic Composer</a></li><li class="tocline"><a href="#radical-composer-section" class="tocxref"><span class="secno">2.1.2 </span>Radical Composer</a></li><li class="tocline"><a href="#on-screen-keyboard-section" class="tocxref"><span class="secno">2.1.3 </span>On-Screen Keyboard</a></li></ul></li><li class="tocline"><a href="#converter-section" class="tocxref"><span class="secno">2.2 </span>Converter</a></li></ul></li><li class="tocline"><a href="#conformance" class="tocxref"><span class="secno">3. </span>Conformance</a></li><li class="tocline"><a href="#terminology" class="tocxref"><span class="secno">4. </span>Terminology and Algorithms</a></li><li class="tocline"><a href="#the-inputmethodcontext-property" class="tocxref"><span class="secno">5. </span>The inputMethodContext property</a><ul class="toc"><li class="tocline"><a href="#attributes" class="tocxref"><span class="secno">5.1 </span>Attributes</a></li></ul></li><li class="tocline"><a href="#inputmethodcontext-interface" class="tocxref"><span class="secno">6. </span>The InputMethodContext Interface</a><ul class="toc"><li class="tocline"><a href="#attributes-1" class="tocxref"><span class="secno">6.1 </span>Attributes</a></li><li class="tocline"><a href="#methods" class="tocxref"><span class="secno">6.2 </span>Methods</a></li></ul></li><li class="tocline"><a href="#best-practices" class="tocxref"><span class="secno">7. </span>Best Practices</a><ul class="toc"><li class="tocline"><a href="#life-of-inputmethodcontext" class="tocxref"><span class="secno">7.1 </span>Life of InputMethodContext</a></li></ul></li><li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">8. </span>Acknowledgements</a></li>
+<li class="tocline"><a href="#revision-history" class="tocxref"><span class="secno">A. </span>Revision History</a></li>
+<li class="tocline"><a href="#references" class="tocxref"><span class="secno">B. </span>References</a><ul class="toc"><li class="tocline"><a href="#normative-references" class="tocxref"><span class="secno">B.1 </span>Normative references</a></li><li class="tocline"><a href="#informative-references" class="tocxref"><span class="secno">B.2 </span>Informative references</a></li></ul></li>
+
+</ul></section>
     
     <section class="informative" id="introduction" typeof="bibo:Chapter" resource="#ref" rel="bibo:Chapter">
       <!--OddPage--><h2 aria-level="1" role="heading" id="h2_introduction"><span class="secno">1. </span>Introduction</h2><p><em>This section is non-normative.</em></p>
@@ -1173,12 +1177,55 @@ table.exceptions table {
     <p>The editors would like to thank Brendan Elliott, Jianfeng Lin, and Travis Leithead for their technical feedback and assistance.</p>
   </section>
 
+<section id="revision-history" class="appendix" typeof="bibo:Chapter" resource="#ref" rel="bibo:Chapter">
+<h2 aria-level="1" role="heading" id="h2_revision_history"><span class="secno">A. </span>Revision History</h2>
+
+<p>The following is an informative summary of the changes since
+<a href="http://www.w3.org/TR/2013/WD-ime-api-20130815/">the last publication of this specification</a>.
+A complete revision history of the
+Editor's Drafts of this specification can be found
+<a href="https://dvcs.w3.org/hg/ime-api/summary">here</a>.
+<ul>
+  <li>Split the draft into 2 parts: the main part (this document) and <a href="https://dvcs.w3.org/hg/ime-api/raw-file/default/Annex.html">annex</a>.
+    <p>The following pieces are put into the annex:</p>
+    <ul>
+      <li>Drawing IME candidates in Javascript
+	<ul>
+	  <li><code>CompositionEvent</code> interface extension (segment information etc.)</li>
+	  <li><code>setCaretRectangle()</code> API</li>
+	</ul>
+      <li>Delivering IME related events to non-editable elements</li>
+      <li><code>confirmComposition()</code> (not used for overlapping UI usecase)</li>
+      <li><code>locale</code> (further refinements required)</li>
+    </ul></li>
+  <li>Example/use cases/best practices
+    <ul>
+      <li>Modified example1 code (suggest UI) to use the new candidatewindow events.</li>
+      <li>Fixed some ReSpec warnings (no visible change).</li>
+    </ul></li>
+  <li>API
+    <ul>
+      <li>Added oncandidatewindow{show,update,hide} events and
+	getCandidateWindowClientRect(), as <a href="https://dvcs.w3.org/hg/ime-api/raw-file/tip/proposals/IMEProposal.html">proposed by Microsoft</a>,
+	except
+	<ul>
+	  <li><code>isCandidateWindowVisible()</code> is dropped due to redundancy.</li>
+	  <li>mentions about synchronousness are dropped due to consideration for
+	    implementability on non-Windows platform.
+	    (although this does not mean discouraging synchronous implementation.)</li>
+	  <li>Added <code>compositionStartOffset</code>/<code>compositionEndOffset</code> to <code>InputMethodContext</code>,
+	    as <a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=22059">proposed by Microsoft</a>.</li>
+	</ul></li>
+    </ul>
+</ul>
+</section>
+
 <section id="references" class="appendix" typeof="bibo:Chapter" resource="#ref" rel="bibo:Chapter">
 <!--OddPage-->
-<h2 aria-level="1" role="heading" id="h2_references"><span class="secno">A. </span>References</h2>
+<h2 aria-level="1" role="heading" id="h2_references"><span class="secno">B. </span>References</h2>
 
 <section id="normative-references" typeof="bibo:Chapter" resource="#ref" rel="bibo:Chapter">
-<h3 aria-level="2" role="heading" id="h3_normative-references"><span class="secno">A.1 </span>Normative references</h3>
+<h3 aria-level="2" role="heading" id="h3_normative-references"><span class="secno">B.1 </span>Normative references</h3>
 <dl class="bibliography" about="">
 <dt id="bib-RFC2119">[RFC2119]</dt>
   <dd rel="dcterms:requires">S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels.</cite></a> March 1997. Internet RFC 2119.  URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a> 
@@ -1187,7 +1234,7 @@ table.exceptions table {
 </section>
 
 <section id="informative-references" typeof="bibo:Chapter" resource="#ref" rel="bibo:Chapter">
-<h3 aria-level="2" role="heading" id="h3_informative-references"><span class="secno">A.2 </span>Informative references</h3>
+<h3 aria-level="2" role="heading" id="h3_informative-references"><span class="secno">B.2 </span>Informative references</h3>
 <dl class="bibliography" about="">
 <dt id="bib-DOM-LEVEL-3-EVENTS">[DOM-LEVEL-3-EVENTS]</dt>
   <dd rel="dcterms:references">Gary Kacmarcik; Travis Leithead; Jacob Rossi; Doug Schepers; Björn Höhrmann; Philippe Le Hégaret; Tom Pixley. <a href="http://www.w3.org/TR/DOM-Level-3-Events/"><cite>Document Object Model (DOM) Level 3 Events Specification</cite></a>. 5 November 2013. W3C Working Draft. URL: <a href="http://www.w3.org/TR/DOM-Level-3-Events/">http://www.w3.org/TR/DOM-Level-3-Events/</a>
