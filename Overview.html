@@ -138,7 +138,7 @@
         They can work independently of this API.
       </p>
       <p>Please also refer to the separate
-        <a href="use-cases/Overview.html">use cases for Input Method Editor
+        <a href="https://dvcs.w3.org/hg/ime-api/raw-file/default/use-cases/Overview.html">use cases for Input Method Editor
           API </a>document for more information about possible use cases.</p>
       <p>For other possible improvements for interacting with IME, please
         refer the <a href="Annex.html">IME API annex</a> document
@@ -643,6 +643,15 @@ function onCandidateWindowHide(event) {
             suggestions.</p>
           <p>Note: client coordinates are in document pixels and have origin
             at the upper-left corner of the client area.</p></dd>
+        <dt>sequence&lt;DOMString&gt; getCompositionAlternatives()</dt>
+        <dd><p>Returns a copy (per call) of the current list of alternate
+            candidate strings from the InputMethodContext object.
+            The InputMethodContext object can produce alternates while it
+            has a composition in progress. When no composition is going on,
+            getCompositionAlternatives() will always return an empty list.
+            The list of alternatives is not updated "live"; it is only
+            updated between compositionupdate events.
+        </p></dd>
       </dl>
     </section>
 
@@ -666,5 +675,10 @@ function onCandidateWindowHide(event) {
         element doesn't have focus.
       </p>
     </section>
+  </section>
+  <section id="acknowledgements">
+      <h1>Acknowledgements</h1>
+    <p>The editors would like to thank Brendan Elliott, Jianfeng Lin, and Travis Leithead from Microsoft Corporation for their technical feedback and assistance.</p>
+  </section>
   </body>
 </html>
