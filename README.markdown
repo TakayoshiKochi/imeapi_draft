@@ -6,4 +6,4 @@ I am syncing to upstream from time to time.
 This draft is published at [GitHub Pages][2] via gh-pages branch.
 
    [1]: http://dvcs.w3.org/hg/ime-api/raw-file/default/Overview.html
-   [2]: http://tkochi-work.github.io/imeapi_draft/Overview.html
+   [2]: http://TakayoshiKochi.github.io/imeapi_draft/Overview.html
